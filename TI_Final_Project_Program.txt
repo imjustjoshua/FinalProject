@@ -1,0 +1,68 @@
+ClrDraw     // Clears the graph screen of all its contents
+AxesOff     // Disables X and Y axis scaling view
+FnOff       // Disable Y= equations
+PlotsOff    // Disables stat plots from appearing
+GridOff     // Disables grid from appearing
+CoordOff
+0->Xmin
+0->Ymin
+94->Xmax
+62->Ymax
+
+2->A		// This is the tollarence for the target
+
+0->L1(1) 	// Stores the x, y coord. of your player
+0->L1(2)
+0->L1(3) 	// Stores the x, y coord. of your enemy player
+0->L1(4)
+0->L1(5) 	// Stores the x, y coord. of your target
+0->L1(6)
+1->L1(7)	// End Game Condition
+
+0->L2(1) 	// Stores the prev x, y coord. of your player
+0->L2(2)
+0->L2(3) 	// Stores the prev x, y coord. of your enemy player
+0->L2(4)
+0->L2(5) 	// Stores the x, y coord. of your target
+0->L2(6)
+
+while L1(7)=1
+// First get all of the locations.
+GetCalc(L1)
+
+// Draws the player
+Pxl-Off(L2(1), L2(2))
+Pxl-On(L1(1), L1(2))
+
+// Draws the opponent
+Pxl-Off(L2(3), L2(4))
+Pxl-On(L1(3), L1(4))
+
+// Changes the target if necessary
+If L1(5)!=L2(5) or L1(6)!=L2(6)
+Then
+Pxl-Off(L2(5)-A, L2(6)-A)
+Pxl-On(L1(5)-A, L1(6)-A)
+
+Pxl-Off(L2(5)-A, L2(6)+A)
+Pxl-On(L1(5)-A, L1(6)+A)
+
+Pxl-Off(L2(5)+A, L2(6)-A)
+Pxl-On(L1(5)+A, L1(6)-A)
+
+Pxl-Off(L2(5)+A, L2(6)+A)
+Pxl-On(L1(5)+A, L1(6)+A)
+End
+
+L1->L2
+
+End
+
+//ADD POST GAME STUFF HERE
+
+ClrDraw		// Renables graphing settings
+AxesOn     
+FnOn       
+PlotsOn    
+GridOn     
+CoordOn
