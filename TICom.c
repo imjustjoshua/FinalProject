@@ -46,6 +46,9 @@ TIPortState TIGetPortState(char * Port, unsigned char PortPin) {
 
 /*
  * This function sends a byte of data to a TI calculator LSB first.
+ *
+ * The calculator's serial interface runs on some custom.
+ *
  */
 void TISendByte(unsigned char data) {
 	int i = 0;
