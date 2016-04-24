@@ -8,6 +8,8 @@
 #ifndef TICOM_H_
 #define TICOM_H_
 
+#include <msp430.h>
+
 /*
  * The port pin used for sending zero.
  */
@@ -21,10 +23,10 @@
 #define SET_TIZero_PULLDE	TIZero_REN &= ~TIZero_BIT
 #define SET_TIZero_PULLUP	TIZero_PORT |= TIZero_BIT
 
-#define SET_TIZero_OUTPUT	TIZero_DDR |= TIZeroPortBit
-#define SET_TIZero_INPUT	TIZero_DDR &= ~TIZeroPortBit
-#define SET_TIZero_LOW		TIZero_PORT	&= ~TIZeroPortBit
-#define SET_TIZero_HIGH		TIZero_PORT |= TIZeroPortBit
+#define SET_TIZero_OUTPUT	TIZero_DDR |= TIZero_BIT
+#define SET_TIZero_INPUT	TIZero_DDR &= ~TIZero_BIT
+#define SET_TIZero_LOW		TIZero_PORT	&= ~TIZero_BIT
+#define SET_TIZero_HIGH		TIZero_PORT |= TIZero_BIT
 
 /*
  * The port pin used for sending one.
@@ -39,10 +41,10 @@
 #define SET_TIOne_PULLDE	TIOne_REN &= ~TIOne_BIT
 #define SET_TIOne_PULLUP	TIOne_PORT |= TIOne_BIT
 
-#define SET_TIOne_OUTPUT	TIOne_DDR |= TIOnePortBit
-#define SET_TIOne_INPUT		TIOne_DDR &= ~TIOnePortBit
-#define SET_TIOne_LOW		TIOne_PORT &= ~TIOnePortBit
-#define SET_TIOne_HIGH		TIOne_PORT |= TIOnePortBit
+#define SET_TIOne_OUTPUT	TIOne_DDR |= TIOne_BIT
+#define SET_TIOne_INPUT		TIOne_DDR &= ~TIOne_BIT
+#define SET_TIOne_LOW		TIOne_PORT &= ~TIOne_BIT
+#define SET_TIOne_HIGH		TIOne_PORT |= TIOne_BIT
 
 typedef enum {
 	Low, High

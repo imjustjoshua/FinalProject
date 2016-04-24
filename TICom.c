@@ -51,25 +51,25 @@ void TISendByte(unsigned char data) {
 	int i = 0;
 
 	for (i = 0; i < 8; i++) {
-		while((TIGetPortState(TIZero_PORT, TIZero_Bit) == Low) || (TIGetPortState(TIOne_PORT, TIOne_Bit) == Low));
+		while((TIGetPortState((char*) &TIZero_PORT, TIZero_BIT) == Low) || (TIGetPortState((char*) &TIOne_PORT, TIOne_BIT) == Low));
 
 		if (data & 0x1) {
 			SET_TIOne_PULLDE;
 			SET_TIOne_OUTPUT;
 			SET_TIOne_LOW;
 
-			while(TIGetPortState(TIZero_PORT, TIZero_Bit) == High);
+			while(TIGetPortState((char*) &TIZero_PORT, TIZero_BIT) == High);
 			TIResetPins();
-			while(TIGetPortState(TIZero_PORT, TIZero_Bit) == Low);
+			while(TIGetPortState((char*) &TIZero_PORT, TIZero_BIT) == Low);
 
 		} else {
 			SET_TIZero_PULLDE;
 			SET_TIZero_OUTPUT;
 			SET_TIZero_LOW;
 
-			while(TIGetPortState(TIOne_PORT, TIZero_Bit) == High);
+			while(TIGetPortState((char*) &TIOne_PORT, TIZero_BIT) == High);
 			TIResetPins();
-			while(TIGetPortState(TIOne_PORT, TIZero_Bit) == Low);
+			while(TIGetPortState((char*) &TIOne_PORT, TIZero_BIT) == Low);
 
 		}
 		TIResetPins();
