@@ -1,1 +1,1 @@
-"./ADC.obj" "./CORDIC.obj" "./LEDDisplay.obj" "./PWM.obj" "./SPI.obj" "./TICom.obj" "./calibrate.obj" "./debounce.obj" "./filter.obj" "./main.obj" "./timerA.obj" "../lnk_msp430g2553.cmd" -l"libc.a" 
+"./ADC.obj" "./CORDIC.obj" "./LEDDisplay.obj" "./PWM.obj" "./SPI.obj" "./TICom.obj" "./calibrate.obj" "./debounce.obj" "./filter.obj" "./main.obj" "./timerA.obj" "./tixx_guide_to_linking_with_TI_calculators/tixx_guide/linkguide/ti89/main.obj" "../lnk_msp430g2553.cmd" -l"libc.a" 

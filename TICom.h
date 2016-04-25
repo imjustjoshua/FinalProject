@@ -16,6 +16,7 @@
 
 #define TIZero_BIT			BIT4
 #define TIZero_PORT			P1OUT
+#define TIZero_PORT_PTR		(char*) &TIZero_PORT
 #define TIZero_DDR			P1DIR
 #define TIZero_REN			P1REN
 
@@ -34,6 +35,7 @@
 
 #define TIOne_BIT			BIT7
 #define TIOne_PORT			P1OUT
+#define TIOne_PORT_PTR		(char*) &TIOne_PORT
 #define TIOne_DDR			P1DIR
 #define TIOne_REN			P1REN
 
@@ -46,12 +48,13 @@
 #define SET_TIOne_LOW		TIOne_PORT &= ~TIOne_BIT
 #define SET_TIOne_HIGH		TIOne_PORT |= TIOne_BIT
 
+#define SEND_TIMEOUT		20 // Timeout should be 250 us -- double check
+
 typedef enum {
 	Low, High
 } TIPortState;
 
 void TIInitializePins(void);
-void TISendByte(unsigned char data);
-void TISendList(unsigned int * data[]);
+void TISendList(unsigned char * array[]);
 
 #endif /* TICOM_H_ */
