@@ -5,6 +5,7 @@
  *      Author: Jonathan Lowe
  */
 
+#include "TIVar.h"
 
 /*
  * Updates the array[9] array to a real number in TI

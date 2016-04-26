@@ -6,6 +6,7 @@
  */
 
 #include "TI_IO.h"
+#include "TILinkProtocol.h"
 
 /*
  * This initializes the port pins for communicating with the TI calculator.
@@ -145,7 +146,8 @@ void TISendByte(unsigned char data) {
  * The checksum is a 16 bit value that verifies the integrity of the data. It is simply the sum of the data byte.
  *
  */
-void TISendPacket(unsigned char * header, unsigned char * data, unsigned int dataLength) {
+void TISendPacket(unsigned char * header, unsigned char * data,
+		unsigned int dataLength) {
 	int i = 0;
 
 	// Sends the packet header to the Calculator. This consists of the machine ID, command ID, and length of data.
@@ -154,7 +156,12 @@ void TISendPacket(unsigned char * header, unsigned char * data, unsigned int dat
 		// TODO Check Error
 	}
 
-	// TODO Add check for headers that do not include data.
+	// If the command ID in the header does not include data, it skipps the rest.
+	if (header[1] == CID_CTS || header[1] == CID_VER || header[1] == CID_ACK
+			|| header[1] == CID_ERR || header[1] == CID_RDY
+			|| header[1] == CID_SCR || header[1] == CID_EOT) {
+		return;
+	}
 
 	unsigned int checkSum = 0;
 
@@ -204,9 +211,8 @@ unsigned char TIReceiveByte(void) {
 			; // TODO timeout
 
 		// If the line that corrisponds to a logic 1 is selected.
-		if (TIGetPortState(TIZero_PORT_PTR, TIZero_BIT) == High)
-		&&(TIGetPortState(TIOne_PORT_PTR, TIOne_BIT) == Low)
-		{
+		if (TIGetPortState(TIZero_PORT_PTR, TIZero_BIT) == High
+				&& TIGetPortState(TIOne_PORT_PTR, TIOne_BIT) == Low) {
 
 			// Pulls down the opposite line.
 			SET_TIZero_PULLDE;
@@ -225,8 +231,7 @@ unsigned char TIReceiveByte(void) {
 			data |= 0x80;
 
 			// If the line that corrisponds to a logic 0 is selected.
-		}
-		else {
+		} else {
 
 			// Pulls down the opposite line.
 			SET_TIOne_PULLDE;
@@ -235,7 +240,7 @@ unsigned char TIReceiveByte(void) {
 
 			// Waits until the first line is released.
 			while (TIGetPortState(TIZero_PORT_PTR, TIZero_BIT) == Low)
-			;// TODO timeout
+				; // TODO timeout
 
 			// Releases the line from above.
 			TIResetPins();
@@ -243,10 +248,10 @@ unsigned char TIReceiveByte(void) {
 			// Adds data transmitted to be returned.
 			data >>= 1;
 		}
-
-		// Returns the data received.
-		return data;
 	}
+
+	// Returns the data received.
+	return data;
 }
 
 /*
@@ -270,7 +275,8 @@ unsigned char TIReceiveByte(void) {
  * The checksum is a 16 bit value that verifies the integrity of the data. It is simply the sum of the data byte.
  *
  */
-void TIReceivePacket(unsigned char * header, unsigned char * data, unsigned int * dataLength, unsigned int maxLength) {
+void TIReceivePacket(unsigned char * header, unsigned char * data,
+		unsigned int * dataLength, unsigned int maxLength) {
 	int i = 0;
 
 	// Gets the header for the packet.
@@ -279,7 +285,12 @@ void TIReceivePacket(unsigned char * header, unsigned char * data, unsigned int 
 		// TODO timeout
 	}
 
-	// TODO Add check for headers that do not include data.
+	// If the command ID in the header does not include data, it skipps the rest.
+	if (header[1] == CID_CTS || header[1] == CID_VER || header[1] == CID_ACK
+			|| header[1] == CID_ERR || header[1] == CID_RDY
+			|| header[1] == CID_SCR || header[1] == CID_EOT) {
+		return;
+	}
 
 	// Checks the length of the data.
 	unsigned int length = (header[3] << 8) | header[2];
@@ -290,7 +301,7 @@ void TIReceivePacket(unsigned char * header, unsigned char * data, unsigned int 
 	}
 
 	// Updates the length of the data to be received.
-	unsigned int *dataLength = length;
+	*dataLength = length;
 	unsigned int checkSum = 0;
 
 	// Gets all of the data.
