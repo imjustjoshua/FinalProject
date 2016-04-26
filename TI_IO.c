@@ -45,17 +45,6 @@ void TIResetPins(void) {
 }
 
 /*
- * This function takes a port pin pointer and port pin and returns whether it is a logic high or not.
- */
-TIPortState TIGetPortState(char * Port, unsigned char PortPin) {
-	if (*Port & PortPin) {
-		return High;
-	} else {
-		return Low;
-	}
-}
-
-/*
  * This function sends a byte of data to a TI calculator LSB first.
  *
  * The TI calculators use this method for transmitting via a stero serial cable:
@@ -76,11 +65,9 @@ void TISendByte(unsigned char data) {
 
 	for (i = 0; i < 8; i++) {
 		// Waits until both of the serial lines have been released.
-		while ((TIGetPortState(TIZero_PORT_PTR, TIZero_BIT) == Low)
-				|| (TIGetPortState(TIOne_PORT_PTR, TIOne_BIT) == Low))
+		while ((READ_TIZero == Low)	|| (READ_TIOne == Low))
 			; // TODO timeout
 
-		int j = (1|3)? 0: 1;
 		// If the data to be sent is a logic one, it sends a logic one.
 		if (data & 0x1) {
 
@@ -90,14 +77,14 @@ void TISendByte(unsigned char data) {
 			SET_TIOne_LOW;
 
 			// Waits until the other line is pulled down.
-			while (TIGetPortState(TIZero_PORT_PTR, TIZero_BIT) == High)
+			while (READ_TIZero == High)
 				; // TODO timeout
 
 			// Releases the first line.
 			TIResetPins();
 
 			// Waits until the other line is released.
-			while (TIGetPortState(TIZero_PORT_PTR, TIZero_BIT) == Low)
+			while (READ_TIZero == Low)
 				; // TODO timeout
 
 			// If the data to be sent is a logic one, it sends a logic zero.
@@ -109,14 +96,14 @@ void TISendByte(unsigned char data) {
 			SET_TIZero_LOW;
 
 			// Waits until the other line is pulled down.
-			while (TIGetPortState(TIOne_PORT_PTR, TIOne_BIT) == High)
+			while (READ_TIOne == High)
 				; // TODO timeout
 
 			// Releases the first line.
 			TIResetPins();
 
 			// Waits until the other line is released.
-			while (TIGetPortState(TIOne_PORT_PTR, TIOne_BIT) == Low)
+			while (READ_TIOne == Low)
 				; // TODO timeout
 
 		}
@@ -207,13 +194,11 @@ unsigned char TIReceiveByte(void) {
 	for (i = 0; i < 8; i++) {
 
 		// Waits until one of the serial lines is pulled down.
-		while ((TIGetPortState(TIZero_PORT_PTR, TIZero_BIT) == High)
-				&& (TIGetPortState(TIOne_PORT_PTR, TIOne_BIT) == High))
+		while ((READ_TIZero == High) && (READ_TIOne == High))
 			; // TODO timeout
 
 		// If the line that corrisponds to a logic 1 is selected.
-		if (TIGetPortState(TIZero_PORT_PTR, TIZero_BIT) == High
-				&& TIGetPortState(TIOne_PORT_PTR, TIOne_BIT) == Low) {
+		if (READ_TIZero == High	&& READ_TIOne == Low) {
 
 			// Pulls down the opposite line.
 			SET_TIZero_PULLDE;
@@ -221,7 +206,7 @@ unsigned char TIReceiveByte(void) {
 			SET_TIZero_LOW;
 
 			// Waits until the first line is released.
-			while (TIGetPortState(TIOne_PORT_PTR, TIOne_BIT) == Low)
+			while (READ_TIOne == Low)
 				; // TODO timeout
 
 			// Releases the line from above.
@@ -240,7 +225,7 @@ unsigned char TIReceiveByte(void) {
 			SET_TIOne_LOW;
 
 			// Waits until the first line is released.
-			while (TIGetPortState(TIZero_PORT_PTR, TIZero_BIT) == Low)
+			while (READ_TIZero == Low)
 				; // TODO timeout
 
 			// Releases the line from above.
