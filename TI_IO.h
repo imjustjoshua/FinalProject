@@ -10,6 +10,10 @@
 
 #include <msp430.h>
 
+typedef enum {
+	Low, High
+} TIPortState;
+
 /*
  * The port pin used for sending zero.
  */
@@ -25,12 +29,14 @@
 #define SET_TIZero_PULLUP	TIZero_PORT |= TIZero_BIT
 
 #define SET_TIZero_OUTPUT	TIZero_DDR |= TIZero_BIT
-#define SET_TIZero_INPUT	TIZero_DDR &= ~TIZero_BIT
 #define SET_TIZero_LOW		TIZero_PORT	&= ~TIZero_BIT
 #define SET_TIZero_HIGH		TIZero_PORT |= TIZero_BIT
 
+#define SET_TIZero_INPUT	TIZero_DDR &= ~TIZero_BIT
+#define READ_TIZero			TIZero_PORT & TIZero_BIT ? High: Low
+
 /*
- * The port pin used for sending one.
+ * The port pin used for sending a logic one.
  */
 
 #define TIOne_BIT			BIT7
@@ -44,15 +50,13 @@
 #define SET_TIOne_PULLUP	TIOne_PORT |= TIOne_BIT
 
 #define SET_TIOne_OUTPUT	TIOne_DDR |= TIOne_BIT
-#define SET_TIOne_INPUT		TIOne_DDR &= ~TIOne_BIT
 #define SET_TIOne_LOW		TIOne_PORT &= ~TIOne_BIT
 #define SET_TIOne_HIGH		TIOne_PORT |= TIOne_BIT
 
-#define SEND_TIMEOUT		20 // Timeout should be 250 us -- double check
+#define SET_TIOne_INPUT		TIOne_DDR &= ~TIOne_BIT
+#define READ_TIOne			TIOne_PORT & TIOne_BIT ? High: Low
 
-typedef enum {
-	Low, High
-} TIPortState;
+#define SEND_TIMEOUT		20 // Timeout should be 250 us -- double check
 
 void TIInitializePins(void);
 void TISendPacket(unsigned char * header, unsigned char * data, unsigned int dataLength);

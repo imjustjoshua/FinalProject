@@ -65,4 +65,9 @@
 #define TID_COMPL		0x0D	// Complex List
 // There are more if you want them. I am not typing them out right now.
 
+// These are the errors that can come up when transmitting data.
+typedef enum {
+	ERROR_NO_ERROR
+} TICommErrors;
+
 #endif /* TILINKPROTOCOL_H_ */

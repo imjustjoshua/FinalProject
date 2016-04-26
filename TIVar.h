@@ -8,6 +8,7 @@
 #ifndef TIVAR_H_
 #define TIVAR_H_
 
-void TIUnsignedCharToTIReal(unsigned char * array, unsigned char data);
+void UnsignedCharToTIReal(unsigned char * array, unsigned char data);
+void UnsignedIntToTIReal(unsigned char * array, unsigned int data);
 
 #endif /* TIVAR_H_ */

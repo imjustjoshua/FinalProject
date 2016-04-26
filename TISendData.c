@@ -105,7 +105,7 @@ void TISendVar(unsigned char charData, unsigned char targetVar) {
 	header[1] = CID_DATA;
 	header[2] = 0x09;
 	dataLength = 9;
-	TIUnsignedCharToTIReal(data, charData);
+	UnsignedCharToTIReal(data, charData);
 
 	// Sends variable data.
 	TISendPacket(header, data, dataLength);

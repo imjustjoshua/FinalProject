@@ -15,7 +15,7 @@
  * TODO add table and explenation.
  *
  */
-void TIUnsignedCharToTIReal(unsigned char * array, unsigned char data){
+void UnsignedCharToTIReal(unsigned char * array, unsigned char data){
 	unsigned char d100s = 0;
 	unsigned char d10s = 0;
 	unsigned char d1s = 0;
@@ -37,6 +37,46 @@ void TIUnsignedCharToTIReal(unsigned char * array, unsigned char data){
 	array[2] = (d100s << 8) | d10s;
 	array[3] = (d1s << 8);
 	array[4] = 0x0;
+	array[5] = 0x0;
+	array[6] = 0x0;
+	array[7] = 0x0;
+	array[8] = 0x0;
+}
+
+void UnsignedIntToTIReal(unsigned char * array, unsigned int data){
+	unsigned char d10000s = 0;
+	unsigned char d1000s = 0;
+	unsigned char d100s = 0;
+	unsigned char d10s = 0;
+	unsigned char d1s = 0;
+
+	while (data >= 10000) {
+		d10000s += 1;
+		data -= 10000;
+	}
+
+	while (data >= 1000) {
+		d1000s += 1;
+		data -= 1000;
+	}
+
+	while (data >= 100) {
+		d100s += 1;
+		data -= 100;
+	}
+
+	while (data >= 10) {
+		d10s += 1;
+		data -= 10;
+	}
+
+	d1s = data;
+
+	array[0] = 0x0;
+	array[1] = 0x84;
+	array[2] = (d10000s << 8) | d1000s;
+	array[3] = (d100s << 8) | d10s;
+	array[4] = (d1s << 8);
 	array[5] = 0x0;
 	array[6] = 0x0;
 	array[7] = 0x0;
