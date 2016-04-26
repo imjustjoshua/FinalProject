@@ -33,7 +33,7 @@ typedef enum {
 #define SET_TIZero_HIGH		TIZero_PORT |= TIZero_BIT
 
 #define SET_TIZero_INPUT	TIZero_DDR &= ~TIZero_BIT
-#define READ_TIZero			TIZero_PORT & TIZero_BIT ? High: Low
+//#define READ_TIZero			TIZero_PORT & TIZero_BIT ? High: Low
 
 /*
  * The port pin used for sending a logic one.
@@ -54,7 +54,7 @@ typedef enum {
 #define SET_TIOne_HIGH		TIOne_PORT |= TIOne_BIT
 
 #define SET_TIOne_INPUT		TIOne_DDR &= ~TIOne_BIT
-#define READ_TIOne			TIOne_PORT & TIOne_BIT ? High: Low
+//#define READ_TIOne			TIOne_PORT & TIOne_BIT ? High: Low
 
 #define SEND_TIMEOUT		20 // Timeout should be 250 us -- double check
 

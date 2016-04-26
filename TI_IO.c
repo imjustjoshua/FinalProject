@@ -80,9 +80,6 @@ void TISendByte(unsigned char data) {
 				|| (TIGetPortState(TIOne_PORT_PTR, TIOne_BIT) == Low))
 			; // TODO timeout
 
-		int j;
-		1|3? j = 0: j = 1;
-
 		// If the data to be sent is a logic one, it sends a logic one.
 		if (data & 0x1) {
 
