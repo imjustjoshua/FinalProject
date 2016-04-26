@@ -81,7 +81,6 @@ void TISendByte(unsigned char data) {
 			; // TODO timeout
 
 		int j = (1|3)? 0: 1;
-
 		// If the data to be sent is a logic one, it sends a logic one.
 		if (data & 0x1) {
 
