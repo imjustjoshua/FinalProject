@@ -9,6 +9,11 @@
 
 /*
  * Updates the array[9] array to a real number in TI
+ *
+ * Real number in TI are formatted as follows:
+ *
+ * TODO add table and explenation.
+ *
  */
 void TIUnsignedCharToTIReal(unsigned char * array, unsigned char data){
 	unsigned char d100s = 0;
