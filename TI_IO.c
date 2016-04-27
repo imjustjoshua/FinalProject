@@ -14,16 +14,16 @@
 void TIInitializePins(void) {
 
 	// Sets the pins to input mode.
-	SET_TIZero_INPUT;
 	SET_TIOne_INPUT;
-
-	// Sets the port pins for pullup resistors.
-	SET_TIOne_HIGH;
-	SET_TIZero_HIGH;
+	SET_TIZero_INPUT;
 
 	// Sets the port pins for pullup resistors.
 	SET_TIOne_PULLEN;
 	SET_TIZero_PULLEN;
+
+	// Sets the port pins for pullup resistors.
+	SET_TIOne_HIGH;
+	SET_TIZero_HIGH;
 }
 
 /*
@@ -31,17 +31,17 @@ void TIInitializePins(void) {
  */
 void TIResetPins(void) {
 
-	// Sets the serial pins high; this also sets the resistors to pull up when enabled.
-	SET_TIOne_HIGH;
-	SET_TIZero_HIGH;
-
 	// Sets the pins to input mode.
-	SET_TIZero_INPUT;
 	SET_TIOne_INPUT;
+	SET_TIZero_INPUT;
 
 	// Sets the port pins for pullup resistors.
 	SET_TIOne_PULLEN;
 	SET_TIZero_PULLEN;
+
+	// Sets the serial pins high; this also sets the resistors to pull up when enabled.
+	SET_TIOne_HIGH;
+	SET_TIZero_HIGH;
 }
 
 /*
@@ -65,7 +65,7 @@ void TISendByte(unsigned char data) {
 
 	for (i = 0; i < 8; i++) {
 		// Waits until both of the serial lines have been released.
-		while ((READ_TIZero == Low)	|| (READ_TIOne == Low))
+		while (!READ_TIZero || !READ_TIOne)
 			; // TODO timeout
 
 		// If the data to be sent is a logic one, it sends a logic one.
@@ -77,15 +77,18 @@ void TISendByte(unsigned char data) {
 			SET_TIOne_LOW;
 
 			// Waits until the other line is pulled down.
-			while (READ_TIZero == High)
+			while (READ_TIZero)
 				; // TODO timeout
 
 			// Releases the first line.
 			TIResetPins();
 
 			// Waits until the other line is released.
-			while (READ_TIZero == Low)
+			while (!READ_TIZero)
 				; // TODO timeout
+
+			// Preps the next bit to be sent.
+			data >>= 1;
 
 			// If the data to be sent is a logic one, it sends a logic zero.
 		} else {
@@ -96,20 +99,20 @@ void TISendByte(unsigned char data) {
 			SET_TIZero_LOW;
 
 			// Waits until the other line is pulled down.
-			while (READ_TIOne == High)
+			while (READ_TIOne)
 				; // TODO timeout
 
 			// Releases the first line.
 			TIResetPins();
 
 			// Waits until the other line is released.
-			while (READ_TIOne == Low)
+			while (!READ_TIOne)
 				; // TODO timeout
 
-		}
+			// Preps the next bit to be sent.
+			data >>= 1;
 
-		// Preps the next bit to be sent.
-		data >>= 1;
+		}
 	}
 }
 
@@ -194,19 +197,19 @@ unsigned char TIReceiveByte(void) {
 	for (i = 0; i < 8; i++) {
 
 		// Waits until one of the serial lines is pulled down.
-		while ((READ_TIZero == High) && (READ_TIOne == High))
+		while (READ_TIZero && READ_TIOne)
 			; // TODO timeout
 
 		// If the line that corrisponds to a logic 1 is selected.
-		if (READ_TIZero == High	&& READ_TIOne == Low) {
+		if (READ_TIZero && !READ_TIOne) {
 
 			// Pulls down the opposite line.
-			SET_TIZero_PULLDE;
 			SET_TIZero_OUTPUT;
+			SET_TIZero_PULLDE;
 			SET_TIZero_LOW;
 
 			// Waits until the first line is released.
-			while (READ_TIOne == Low)
+			while (!READ_TIOne)
 				; // TODO timeout
 
 			// Releases the line from above.
@@ -217,15 +220,15 @@ unsigned char TIReceiveByte(void) {
 			data |= 0x80;
 
 			// If the line that corrisponds to a logic 0 is selected.
-		} else {
+		} else if (!READ_TIZero && READ_TIOne) {
 
 			// Pulls down the opposite line.
-			SET_TIOne_PULLDE;
 			SET_TIOne_OUTPUT;
+			SET_TIOne_PULLDE;
 			SET_TIOne_LOW;
 
 			// Waits until the first line is released.
-			while (READ_TIZero == Low)
+			while (!READ_TIZero)
 				; // TODO timeout
 
 			// Releases the line from above.
@@ -233,6 +236,10 @@ unsigned char TIReceiveByte(void) {
 
 			// Adds data transmitted to be returned.
 			data >>= 1;
+		} else if(!READ_TIZero && !READ_TIOne) {
+			while (1);
+		} else {
+			while(1);
 		}
 	}
 

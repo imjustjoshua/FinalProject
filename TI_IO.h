@@ -15,14 +15,14 @@ typedef enum {
 } TIPortState;
 
 /*
- * The port pin used for sending zero.
+ * The port pin used for sending zero. (red wire)
  */
 
-#define TIZero_BIT			BIT3
-#define TIZero_PORT			P1OUT
-#define TIZero_PORT_IN		P1IN
-#define TIZero_DDR			P1DIR
-#define TIZero_REN			P1REN
+#define TIZero_BIT			BIT4
+#define TIZero_PORT			P2OUT
+#define TIZero_PORT_IN		P2IN
+#define TIZero_DDR			P2DIR
+#define TIZero_REN			P2REN
 
 #define SET_TIZero_PULLEN	TIZero_REN |= TIZero_BIT
 #define SET_TIZero_PULLDE	TIZero_REN &= ~TIZero_BIT
@@ -33,13 +33,13 @@ typedef enum {
 #define SET_TIZero_HIGH		TIZero_PORT |= TIZero_BIT
 
 #define SET_TIZero_INPUT	TIZero_DDR &= ~TIZero_BIT
-#define READ_TIZero			(TIZero_PORT_IN & TIZero_BIT)? High: Low
+#define READ_TIZero			(TIZero_PORT_IN & TIZero_BIT)
 
 /*
- * The port pin used for sending a logic one.
+ * The port pin used for sending a logic one. (white wire)
  */
 
-#define TIOne_BIT			BIT4
+#define TIOne_BIT			BIT3
 #define TIOne_PORT			P2OUT
 #define TIOne_PORT_IN		P2IN
 #define TIOne_DDR			P2DIR
@@ -54,13 +54,16 @@ typedef enum {
 #define SET_TIOne_HIGH		TIOne_PORT |= TIOne_BIT
 
 #define SET_TIOne_INPUT		TIOne_DDR &= ~TIOne_BIT
-#define READ_TIOne			(TIOne_PORT_IN & TIOne_BIT)? High: Low
+#define READ_TIOne			(TIOne_PORT_IN & TIOne_BIT)
 
 #define SEND_TIMEOUT		20 // Timeout should be 250 us -- double check
 
 void TIInitializePins(void);
+
+void TISendByte(unsigned char data);
 void TISendPacket(unsigned char * header, unsigned char * data,
 		unsigned int dataLength);
+unsigned char TIReceiveByte(void);
 void TIReceivePacket(unsigned char * header, unsigned char * data,
 		unsigned int * dataLength, unsigned int maxLength);
 

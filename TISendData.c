@@ -72,13 +72,13 @@ void TISendList(unsigned char * charList, unsigned int charListLength) {
  */
 void TISendVar(unsigned char charData, unsigned char targetVar) {
 	// Sets up the header and data length for the data array.
-	unsigned int dataLength = 0x0D;
-	unsigned char header[4] = {MID_TI83P84P, CID_RTS, dataLength & 0xFF, dataLength & 0xFF00};
+	unsigned int dataLength = 0x0B;
+	unsigned char header[4] = {MID_CTI82, CID_RTS, dataLength & 0xFF, dataLength & 0xFF00};
 
 	// Sets up the variable header to be sent.
 	unsigned char data[13] = {0};
 	data[0] = 0x09;
-	data[0] = 0x41; // targetVar;// TODO Change
+	data[3] = 0x41; // targetVar;// TODO Change
 
 	// Sends a request to send a real list.
 	TISendPacket(header, data, dataLength);
@@ -95,15 +95,19 @@ void TISendVar(unsigned char charData, unsigned char targetVar) {
 		// TODO Add error
 	}
 
+	header[0] = MID_CTI82;
 	header[1] = CID_ACK;
+	header[2] = 0x0;
+	header[3] = 0x0;
 
 	// Sends acknowlegement of CTS.
 	TISendPacket(header, data, dataLength);
 
-
 	// Sets up data to be transferred.
+	header[0] = MID_CTI82;
 	header[1] = CID_DATA;
-	header[2] = 0x09;
+	header[2] = 0x0A;
+	header[3] = 0x0;
 	dataLength = 9;
 	UnsignedCharToTIReal(data, charData);
 
@@ -117,7 +121,10 @@ void TISendVar(unsigned char charData, unsigned char targetVar) {
 	}
 
 	// Sets up EOT header.
-	header[1] = CID_EOT;
+	header[0] = MID_CTI82;
+	header[1] = CID_ACK;
+	header[2] = 0x0;
+	header[3] = 0x0;
 
 	// Sends end of transmission.
 	TISendPacket(header, data, dataLength);
