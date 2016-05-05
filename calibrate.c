@@ -82,6 +82,8 @@ void Calibrate(void) {
 	// Deconfigures the timer so the interrupt stops running and taking up time.
 	//DeConfigureTimerA();
 
+	UpdateLEDDisplay(0x0);
+
 	int i;
 
 	for (i = 0; i < 3; i++) {
