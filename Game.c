@@ -82,9 +82,10 @@ void moveTarget(void) {
 }
 
 void targetCheck(void) {
-	if (((us.location.X >= target.X) && (us.location.Y <= target.Y))
-			&& !(them.location.X >= target.X)
-			&& (them.location.Y <= target.Y)) {
+	int dx = target.X - us.location.X;
+	int dy = target.Y - us.location.Y;
+
+	if ((-TARGETRADIUS <= dx && dx <= TARGETRADIUS) && (-TARGETRADIUS <= dy && dy <= TARGETRADIUS)) {
 		scoreTimer++;
 		gameData |= BIT5;
 		if (scoreTimer >= SCORETIME) {
@@ -92,6 +93,12 @@ void targetCheck(void) {
 			scoreTimer = 0;
 		}
 	}
+
+	// TODO add enemy detection to this.
+//	if (((us.location.X >= target.X) && (us.location.Y <= target.Y))
+//			&& !(them.location.X >= target.X)
+//			&& (them.location.Y <= target.Y)) {
+//	}
 }
 
 void updateDisplay(void) {

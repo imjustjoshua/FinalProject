@@ -14,6 +14,9 @@
 
 #include "Game.h"
 
+#include "receive.h"
+#include "transmit.h"
+
 // Function Prototypes
 void ConfigureClockModule();
 void InitializeGlobalVariables(void);
@@ -33,6 +36,11 @@ volatile unsigned int calibratedZero[3];	// x, y, z
 coordinates xyzCoordinates;
 measurements angles;
 PWMData DisplayPWM;
+
+//Global Variables Section
+TransmitterData Xmit1; //This declares an instance of the transmitter data structure.
+ManchesterReceiver Rcv1;
+Event_Queue Receiver_Events; //Receiver Global Variables
 
 void main(void) {
 	WDTCTL = WDTPW | WDTHOLD;		// Stop watchdog timer

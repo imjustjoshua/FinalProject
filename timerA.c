@@ -1,6 +1,7 @@
 #include "timerA.h"
 
 extern TransmitterData Xmit1;
+extern unsigned int g250usTimer;
 
 void ConfigureTimerA(void)
 {

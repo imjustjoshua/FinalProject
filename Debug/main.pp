@@ -14,6 +14,9 @@ main.obj: ../CORDIC.h
 main.obj: ../PWM.h
 main.obj: ../debounce.h
 main.obj: ../timerA.h
+main.obj: ../transmit.h
+main.obj: ../configure.h
+main.obj: ../receive.h
 main.obj: ../calibrate.h
 main.obj: ../TI_IO.h
 main.obj: ../TISendData.h
@@ -33,6 +36,9 @@ C:/ti/ccsv6/tools/compiler/ti-cgt-msp430_4.4.5/include/intrinsics_legacy_undefs.
 ../PWM.h: 
 ../debounce.h: 
 ../timerA.h: 
+../transmit.h: 
+../configure.h: 
+../receive.h: 
 ../calibrate.h: 
 ../TI_IO.h: 
 ../TISendData.h: 

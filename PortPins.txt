@@ -1,0 +1,40 @@
+This file contains information about what port pins are being used for what.
+
+Only the accelerometer has it's origional port pins from the project.
+
+Accelerometer:
+	P1.0 - Xout for the accelerometer
+	P1.1 - Yout for the accelerometer
+	P1.2 - Zout for the accelerometer
+	P1.3 - PushButton
+	
+	These control the LED's on the accelorometer:
+	P1.4 - LED controler blank: Enables input
+	P1.5 - SPI clock
+	P1.7 - Serial Input
+	P2.0 - Xlatch
+
+TI Calculator:
+	P2.3 - The red wire on the serial IO cable.
+	P2.4 - The white wire on the serial IO cable.
+
+Serial LED Display:
+	P2.6 - Serial Data Line
+	P2.7 - Serial Clock Line
+
+Wireless Transmittor/Receiver:
+	Receive pins:
+	P2.1 - This is a receive read pin
+	P2.2 - This is a receive read pin
+	
+	Transmit Pins:
+	P2.5 - Data pin
+	
+	Configure:
+	P1.6 - T/R select
+
+DAC:
+	PX.X - SPI clock - NEED
+	PX.X - Serial Input - NEED
+	PX.X - Dac Select Bit - NEED
+	PX.X - Clr Bit - NEED

@@ -1,1 +1,1 @@
-"./ADC.obj" "./CORDIC.obj" "./Game.obj" "./LEDDisplay.obj" "./PWM.obj" "./SPI.obj" "./SoftwareSerial.obj" "./TISendData.obj" "./TIVar.obj" "./TI_IO.obj" "./calibrate.obj" "./debounce.obj" "./filter.obj" "./main.obj" "./timerA.obj" "../lnk_msp430g2553.cmd" -l"libc.a" 
+"./ADC.obj" "./CORDIC.obj" "./ErrorDetect.obj" "./Game.obj" "./LEDDisplay.obj" "./PWM.obj" "./SPI.obj" "./TISendData.obj" "./TIVar.obj" "./TI_IO.obj" "./calibrate.obj" "./debounce.obj" "./filter.obj" "./main.obj" "./receive.obj" "./timerA.obj" "./transmit.obj" "../lnk_msp430g2553.cmd" -l"libc.a" 

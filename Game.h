@@ -8,6 +8,7 @@
 #define GAME_H_
 
 #define TARGETSIZE 		5
+#define TARGETRADIUS 	2
 
 #define MAXLOCATIONX 	94
 #define MAXLOCATIONY 	62
