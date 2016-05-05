@@ -10,9 +10,9 @@
 
 #include <msp430.h>
 
-typedef enum {
-	Low, High
-} TIPortState;
+//typedef enum {
+//	Low, High
+//} TIPortState;
 
 /*
  * The port pin used for sending zero. (red wire)
