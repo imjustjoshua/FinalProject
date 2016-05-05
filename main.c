@@ -36,9 +36,6 @@ void main(void) {
 	// Configures the ADC
 	ConfigureADC();
 
-	// Configures the LED display.
-	ConfigureLEDDisplay();
-
 	// Configures the port pins for SPI
 	ConfigureSPI();
 
