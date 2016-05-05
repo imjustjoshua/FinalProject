@@ -8,6 +8,7 @@
 #define GAME_H_
 
 #define TARGETSIZE 		5
+
 #define MAXLOCATIONX 	94
 #define MAXLOCATIONY 	62
 #define MINLOCATIONX 	0
@@ -18,20 +19,24 @@
 #define MAXTARGETY   	62-TARGETSIZE
 #define MAXSCORE 	 	10
 #define SCORETIME	 	10
+
 typedef struct{
 	unsigned char X;
 	unsigned char Y;
 } Point;
-void initializePoint(Point *point, unsigned char X1,unsigned char Y1);
-
 
 typedef struct {
 	unsigned char score;
 	Point location;
 } Player;
-Player *us;
+
+Player us;
 Point target;
-Player *them;
+Player them;
+
+unsigned char scoreTimer;
+unsigned char timer500ms;
+
 //typedef enum{
 //	False,True
 //} Bool;
@@ -48,15 +53,17 @@ unsigned char gameData;
  * Bit0 (LSB)	= 1 if there is a ___ error
  */
 
-void moveUs(unsigned char togotoX,unsigned char togotoY);
+// Function headers
+void moveUs(int togotoX, int togotoY);
 void moveThem(unsigned char togotoX,unsigned char togotoY);
-void initializeGame();
-unsigned char randNum();
-unsigned char randX();
-unsigned char randY();
-void moveTarget();
-void targetCheck();
-unsigned char scoreTimer;
-unsigned char timer500ms;
+void initializeGame(void);
+unsigned char randNum(void);
+unsigned char randX(void);
+unsigned char randY(void);
+void moveTarget(void);
+void targetCheck(void);
+void initializePoint(Point *point, unsigned char X1,unsigned char Y1);
+void updateDisplay(void);
+void updateLocationOnTilt(void);
 
 #endif /* GAME_H_ */

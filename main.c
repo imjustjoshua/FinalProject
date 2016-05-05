@@ -9,6 +9,11 @@
 #include "calibrate.h"
 #include "PWM.h"
 
+#include "TI_IO.h"
+#include "TISendData.h"
+
+#include "Game.h"
+
 // Function Prototypes
 void ConfigureClockModule();
 void InitializeGlobalVariables(void);
@@ -33,6 +38,12 @@ void main(void) {
 	WDTCTL = WDTPW | WDTHOLD;		// Stop watchdog timer
 	ConfigureClockModule();
 
+	// Initializes the game variables
+	initializeGame();
+
+	// Initializes the port pins for the TI communication.
+	TIInitializePins();
+
 	// Configures the ADC
 	ConfigureADC();
 
@@ -51,7 +62,7 @@ void main(void) {
 	// Loop forever
 	while (1) {
 		// Gets new samples and passes them through a circular buffer
-		GetSamples();
+		GetFilteredSample();
 
 		// Turns the readings into coordinates using CORDIC
 		setCoordinates(&xyzCoordinates, average[0] - calibratedZero[0], average[1] - calibratedZero[1], average[2] - calibratedZero[2]);
@@ -59,8 +70,11 @@ void main(void) {
 		// Takes the coordinates and turns them into the tilt and x-y plane angles.
 		angles = getDisplaySetting(&xyzCoordinates);
 
+		updateLocationOnTilt();
+		updateDisplay();
+
 		// Runs a PWM FSM for the LED display
-		PWM(&DisplayPWM, &angles);
+		//PWM(&DisplayPWM, &angles);
 	}
 }
 
