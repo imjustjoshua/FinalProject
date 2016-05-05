@@ -10,5 +10,7 @@
 
 void TISendList(unsigned char * charList, unsigned int charListLength);
 void TISendVar(unsigned char charData, unsigned char targetVar);
+void TISendVarGetCalc(unsigned char charData);
+void TISendListGetCalc(unsigned char * charList);
 
 #endif /* TISENDDATA_H_ */

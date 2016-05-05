@@ -16,9 +16,9 @@
  *
  */
 void UnsignedCharToTIReal(unsigned char * array, unsigned char data){
-	unsigned char d100s = 0;
-	unsigned char d10s = 0;
-	unsigned char d1s = 0;
+	unsigned int d100s = 0;
+	unsigned int d10s = 0;
+	unsigned int d1s = 0;
 
 	while (data >= 100) {
 		d100s += 1;
@@ -30,17 +30,42 @@ void UnsignedCharToTIReal(unsigned char * array, unsigned char data){
 		data -= 10;
 	}
 
-	d1s = data;
+	while (data >= 1) {
+		d1s += 1;
+		data -= 1;
+	}
 
-	array[0] = 0x0;
-	array[1] = 0x82;
-	array[2] = (d100s << 8) | d10s;
-	array[3] = (d1s << 8);
-	array[4] = 0x0;
-	array[5] = 0x0;
-	array[6] = 0x0;
-	array[7] = 0x0;
-	array[8] = 0x0;
+	if (d100s > 0) {
+		array[0] = 0x0;
+		array[1] = 0x82;
+		array[2] = (d100s << 4) | d10s;
+		array[3] = (d1s << 4);
+		array[4] = 0x0;
+		array[5] = 0x0;
+		array[6] = 0x0;
+		array[7] = 0x0;
+		array[8] = 0x0;
+	} else if (d10s > 0){
+		array[0] = 0x0;
+		array[1] = 0x81;
+		array[2] = (d10s << 4) | d1s;
+		array[3] = 0x0;
+		array[4] = 0x0;
+		array[5] = 0x0;
+		array[6] = 0x0;
+		array[7] = 0x0;
+		array[8] = 0x0;
+	} else {
+		array[0] = 0x0;
+		array[1] = 0x80;
+		array[2] = (d1s << 4);
+		array[3] = 0x0;
+		array[4] = 0x0;
+		array[5] = 0x0;
+		array[6] = 0x0;
+		array[7] = 0x0;
+		array[8] = 0x0;
+	}
 }
 
 void UnsignedIntToTIReal(unsigned char * array, unsigned int data){
@@ -72,14 +97,56 @@ void UnsignedIntToTIReal(unsigned char * array, unsigned int data){
 
 	d1s = data;
 
-	array[0] = 0x0;
-	array[1] = 0x84;
-	array[2] = (d10000s << 8) | d1000s;
-	array[3] = (d100s << 8) | d10s;
-	array[4] = (d1s << 8);
-	array[5] = 0x0;
-	array[6] = 0x0;
-	array[7] = 0x0;
-	array[8] = 0x0;
+	if (d10000s > 0) {
+		array[0] = 0x0;
+		array[1] = 0x84;
+		array[2] = (d10000s << 4) | d1000s;
+		array[3] = (d100s << 4) | d10s;
+		array[4] = (d1s << 4);
+		array[5] = 0x0;
+		array[6] = 0x0;
+		array[7] = 0x0;
+		array[8] = 0x0;
+	} else if(d1000s > 0) {
+		array[0] = 0x0;
+		array[1] = 0x83;
+		array[2] = (d1000s << 4) | d100s;
+		array[3] = (d10s << 4) | d1s;
+		array[4] = 0x0;
+		array[5] = 0x0;
+		array[6] = 0x0;
+		array[7] = 0x0;
+		array[8] = 0x0;
+	} else if (d100s > 0) {
+		array[0] = 0x0;
+		array[1] = 0x82;
+		array[2] = (d100s << 4) | d10s;
+		array[3] = (d1s << 4);
+		array[4] = 0x0;
+		array[5] = 0x0;
+		array[6] = 0x0;
+		array[7] = 0x0;
+		array[8] = 0x0;
+	} else if(d10s > 0) {
+		array[0] = 0x0;
+		array[1] = 0x81;
+		array[2] = (d10s << 4) | d1s;
+		array[3] = 0x0;
+		array[4] = 0x0;
+		array[5] = 0x0;
+		array[6] = 0x0;
+		array[7] = 0x0;
+		array[8] = 0x0;
+	} else {
+		array[0] = 0x0;
+		array[1] = 0x80;
+		array[2] = (d1s << 4);
+		array[3] = 0x0;
+		array[4] = 0x0;
+		array[5] = 0x0;
+		array[6] = 0x0;
+		array[7] = 0x0;
+		array[8] = 0x0;
+	}
 }
 
