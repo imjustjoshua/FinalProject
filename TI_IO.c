@@ -31,6 +31,10 @@ void TIInitializePins(void) {
  */
 void TIResetPins(void) {
 
+	// Sets the serial pins high; this also sets the resistors to pull up when enabled.
+	SET_TIOne_HIGH;
+	SET_TIZero_HIGH;
+
 	// Sets the pins to input mode.
 	SET_TIOne_INPUT;
 	SET_TIZero_INPUT;
@@ -38,10 +42,6 @@ void TIResetPins(void) {
 	// Sets the port pins for pullup resistors.
 	SET_TIOne_PULLEN;
 	SET_TIZero_PULLEN;
-
-	// Sets the serial pins high; this also sets the resistors to pull up when enabled.
-	SET_TIOne_HIGH;
-	SET_TIZero_HIGH;
 }
 
 /*
@@ -68,17 +68,20 @@ void TISendByte(unsigned char data) {
 		while (!READ_TIZero || !READ_TIOne)
 			; // TODO timeout
 
+		_delay_cycles(64);
+
 		// If the data to be sent is a logic one, it sends a logic one.
 		if (data & 0x1) {
 
 			// Pulls down the line associated with a logic one.
-			SET_TIOne_PULLDE;
 			SET_TIOne_OUTPUT;
+			SET_TIOne_PULLDE;
 			SET_TIOne_LOW;
 
 			// Waits until the other line is pulled down.
 			while (READ_TIZero)
 				; // TODO timeout
+			_delay_cycles(64);
 
 			// Releases the first line.
 			TIResetPins();
@@ -86,21 +89,26 @@ void TISendByte(unsigned char data) {
 			// Waits until the other line is released.
 			while (!READ_TIZero)
 				; // TODO timeout
+			_delay_cycles(64);
 
 			// Preps the next bit to be sent.
 			data >>= 1;
+
+			// Releases the line from above.
+			TIResetPins();
 
 			// If the data to be sent is a logic one, it sends a logic zero.
 		} else {
 
 			// Pulls down the line associated with a logic zero.
-			SET_TIZero_PULLDE;
 			SET_TIZero_OUTPUT;
+			SET_TIZero_PULLDE;
 			SET_TIZero_LOW;
 
 			// Waits until the other line is pulled down.
 			while (READ_TIOne)
 				; // TODO timeout
+			_delay_cycles(64);
 
 			// Releases the first line.
 			TIResetPins();
@@ -108,12 +116,18 @@ void TISendByte(unsigned char data) {
 			// Waits until the other line is released.
 			while (!READ_TIOne)
 				; // TODO timeout
+			_delay_cycles(64);
 
 			// Preps the next bit to be sent.
 			data >>= 1;
 
+			// Releases the line from above.
+			TIResetPins();
 		}
 	}
+
+	// Releases the line from above.
+	TIResetPins();
 }
 
 /*
@@ -243,6 +257,9 @@ unsigned char TIReceiveByte(void) {
 		}
 	}
 
+	// Releases the line from above.
+	TIResetPins();
+
 	// Returns the data received.
 	return data;
 }
@@ -306,10 +323,72 @@ void TIReceivePacket(unsigned char * header, unsigned char * data,
 
 	// Gets the checksum.
 	unsigned int checkSumReceived = TIReceiveByte();
+	data[*dataLength] = checkSumReceived;
 	checkSumReceived |= TIReceiveByte() << 8;
+	data[*dataLength + 1] = checkSumReceived >> 8;
+
 
 	// If the checksums do not match.
 	if (checkSumReceived != checkSum) {
 		// TODO Implement Error!
 	}
+}
+
+
+unsigned char TIListenByte(void) {
+	unsigned char data = 0;
+
+	int i = 0;
+
+	for (i = 0; i < 8; i++) {
+
+		// Waits until one of the serial lines is pulled down.
+		while (READ_TIZero && READ_TIOne)
+			; // TODO timeout
+
+		// If the line that corrisponds to a logic 1 is selected.
+		if (READ_TIZero && !READ_TIOne) {
+
+			// Waits until the first line is released.
+			while (READ_TIZero && !READ_TIOne)
+				; // TODO timeout
+
+			// Waits until the first line is released.
+			while (!READ_TIZero && !READ_TIOne)
+				; // TODO timeout
+
+			// Waits until the first line is released.
+			while (!READ_TIZero && READ_TIOne)
+				; // TODO timeout
+
+			// Adds data transmitted to be returned.
+			data >>= 1;
+			data |= 0x80;
+
+			// If the line that corrisponds to a logic 0 is selected.
+		} else if (!READ_TIZero && READ_TIOne) {
+
+			// Waits until the first line is released.
+			while (!READ_TIZero && READ_TIOne)
+				; // TODO timeout
+
+			// Waits until the first line is released.
+			while (!READ_TIZero && !READ_TIOne)
+				; // TODO timeout
+
+			// Waits until the first line is released.
+			while (READ_TIZero && !READ_TIOne)
+				; // TODO timeout
+
+
+			// Adds data transmitted to be returned.
+			data >>= 1;
+		}
+	}
+
+//	// Releases the line from above.
+//	TIResetPins();
+
+	// Returns the data received.
+	return data;
 }

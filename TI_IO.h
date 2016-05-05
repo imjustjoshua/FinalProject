@@ -67,4 +67,6 @@ unsigned char TIReceiveByte(void);
 void TIReceivePacket(unsigned char * header, unsigned char * data,
 		unsigned int * dataLength, unsigned int maxLength);
 
+unsigned char TIListenByte(void);
+
 #endif /* TI_IO_H_ */
