@@ -7,15 +7,17 @@ CoordOff
 94->Xmax
 62->Ymax
 
+
+// initial setup
 2->A		// This is the tollarence for the target
 
 0->L1(1) 	// Stores the x, y coord. of your player
 0->L1(2)
 0->L1(3) 	// Stores the x, y coord. of your enemy player
 0->L1(4)
-0->L1(5) 	// Stores the x, y coord. of your target
-0->L1(6)
-1->L1(7)	// End Game Condition
+9->L1(5) 	// Stores the x, y coord. of your target
+9->L1(6)
+0->L1(7)	// End Game Condition
 
 0->L2(1) 	// Stores the prev x, y coord. of your player
 0->L2(2)
@@ -24,6 +26,18 @@ CoordOff
 0->L2(5) 	// Stores the x, y coord. of your target
 0->L2(6)
 
+// Pre game screen
+
+Text(10,36,"Welcome")
+Text(30,8,"Waiting for connection")
+
+// Wait until MSP is ready
+While L1(7)=0
+GetCalc(L1)
+End
+ClrDraw
+
+// During gameplay:
 While L1(7)=1
 // First get all of the locations.
 GetCalc(L1)
@@ -82,6 +96,14 @@ L1->L2
 End
 
 //ADD POST GAME STUFF HERE
+
+ClrDraw
+
+If L1(1)=1
+Text(10,36,"You Won")
+Else
+Text(10,36,"You Lost")
+
 
 ClrDraw		// Renables graphing settings
 AxesOn     

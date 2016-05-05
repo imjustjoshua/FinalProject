@@ -104,7 +104,7 @@ void targetCheck(void) {
 void updateDisplay(void) {
 	unsigned char dataToSend[7] = {us.location.Y, us.location.X, them.location.Y, them.location.X, target.Y, target.X, 1};
 
-	while (!READ_TIZero || !READ_TIOne);
+//	while (!READ_TIZero || !READ_TIOne);
 	TISendListGetCalc(dataToSend);
 }
 

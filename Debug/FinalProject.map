@@ -1,10 +1,10 @@
 ******************************************************************************
                   MSP430 Linker PC v4.4.5                      
 ******************************************************************************
->> Linked Thu May 05 16:56:11 2016
+>> Linked Thu May 05 18:45:42 2016
 
 OUTPUT FILE NAME:   <FinalProject.out>
-ENTRY POINT SYMBOL: "_c_int00_noargs_noexit"  address: 0000cfe0
+ENTRY POINT SYMBOL: "_c_int00_noargs_noexit"  address: 0000cfd2
 
 
 MEMORY CONFIGURATION
@@ -19,7 +19,7 @@ MEMORY CONFIGURATION
   INFOC                 00001040   00000040  00000000  00000040  RWIX
   INFOB                 00001080   00000040  00000000  00000040  RWIX
   INFOA                 000010c0   00000040  00000000  00000040  RWIX
-  FLASH                 0000c000   00003fde  00001197  00002e47  RWIX
+  FLASH                 0000c000   00003fde  00001189  00002e55  RWIX
   BSLSIGNATURE          0000ffde   00000002  00000002  00000000  RWIX  ffff 
   INT00                 0000ffe0   00000002  00000002  00000000  RWIX
   INT01                 0000ffe2   00000002  00000000  00000002  RWIX
@@ -77,7 +77,7 @@ section   page    origin      length       input sections
                   000003b0    00000002     rts430_eabi.lib : boot.obj (.stack)
                   000003b2    0000004e     --HOLE--
 
-.text      0    0000c000    00001152     
+.text      0    0000c000    00001144     
                   0000c000    00000192     TISendData.obj (.text:TISendListGetCalc)
                   0000c192    00000108     CORDIC.obj (.text:getDisplaySetting)
                   0000c29a    000000d8     main.obj (.text:InitializeGlobalVariables)
@@ -97,63 +97,63 @@ section   page    origin      length       input sections
                   0000cb24    00000058     rts430_eabi.lib : autoinit.obj (.text:_auto_init)
                   0000cb7c    0000004c     Game.obj (.text:getTiltMultiplier)
                   0000cbc8    0000004c     rts430_eabi.lib : lsr16.obj (.text)
-                  0000cc14    0000004c     Game.obj (.text:updateDisplay)
-                  0000cc60    00000048     Game.obj (.text:targetCheck)
-                  0000cca8    00000046     Game.obj (.text:initializeGame)
-                  0000ccee    00000042     Game.obj (.text:moveUs)
-                  0000cd30    00000038     rts430_eabi.lib : rand.obj (.text:rand)
-                  0000cd68    00000036     receive.obj (.text:InsertEvent)
-                  0000cd9e    00000030     SPI.obj (.text:SPISendByte)
-                  0000cdce    00000030     Game.obj (.text:moveTarget)
-                  0000cdfe    0000002e     SPI.obj (.text:ConfigureSPI)
-                  0000ce2c    0000002c     ADC.obj (.text:ConfigureADC)
-                  0000ce58    0000002c     rts430_eabi.lib : asr16.obj (.text)
-                  0000ce84    0000002c                     : lsl16.obj (.text)
-                  0000ceb0    0000002a     CORDIC.obj (.text:getQuad)
-                  0000ceda    00000026     CORDIC.obj (.text:findTotalAngle)
-                  0000cf00    00000026     rts430_eabi.lib : mult32.obj (.text)
-                  0000cf26    00000026     timerA.obj (.text:timerCaptureFallingInterrupt)
-                  0000cf4c    00000020     TI_IO.obj (.text:TIInitializePins)
-                  0000cf6c    00000020     TI_IO.obj (.text:TIResetPins)
-                  0000cf8c    00000020     timerA.obj (.text:timerCaptureRisingInterrupt)
-                  0000cfac    0000001a     timerA.obj (.text:Timer1_A3_initial)
-                  0000cfc6    0000001a     calibrate.obj (.text:WaitButtonPress)
-                  0000cfe0    0000001a     rts430_eabi.lib : boot_special.obj (.text:_c_int00_noargs_noexit)
-                  0000cffa    00000018     ADC.obj (.text:GetSamples)
-                  0000d012    00000016     ADC.obj (.text:GetFilteredSample)
-                  0000d028    00000016     debounce.obj (.text:GetSwitch)
-                  0000d03e    00000014     timerA.obj (.text:Timer0_A3_initial)
-                  0000d052    00000014     rts430_eabi.lib : copy_zero_init.obj (.text:decompress:ZI:__TI_zero_init)
-                  0000d066    00000014                     : memset.obj (.text:memset)
-                  0000d07a    00000014                     : mult16.obj (.text)
-                  0000d08e    00000012                     : copy_decompress_none.obj (.text:decompress:none:__TI_decompress_none)
-                  0000d0a0    00000012                     : memcpy.obj (.text:memcpy)
-                  0000d0b2    00000012     Game.obj (.text:randY)
-                  0000d0c4    00000010     timerA.obj (.text:ConfigureTimerA)
-                  0000d0d4    00000010     rts430_eabi.lib : epilog.obj (.text)
-                  0000d0e4    0000000e     main.obj (.text:ConfigureClockModule)
-                  0000d0f2    0000000e     LEDDisplay.obj (.text:UpdateLEDDisplay)
-                  0000d100    0000000e     CORDIC.obj (.text:setCoordinates)
-                  0000d10e    0000000c     timerA.obj (.text:periodicTimerA0Interrupt)
-                  0000d11a    0000000c     Game.obj (.text:randNum)
-                  0000d126    0000000c     Game.obj (.text:randX)
-                  0000d132    0000000a     Game.obj (.text:initializePoint)
-                  0000d13c    00000006     rts430_eabi.lib : isr_trap.obj (.text:_isr:__TI_ISR_TRAP)
-                  0000d142    00000006                     : copy_decompress_rle.obj (.text:decompress:rle24:__TI_decompress_rle24)
-                  0000d148    00000004                     : pre_init.obj (.text:_system_pre_init)
-                  0000d14c    00000004                     : exit.obj (.text:abort)
-                  0000d150    00000002                     : _lock.obj (.text:_nop)
+                  0000cc14    00000048     Game.obj (.text:targetCheck)
+                  0000cc5c    00000046     Game.obj (.text:initializeGame)
+                  0000cca2    00000042     Game.obj (.text:moveUs)
+                  0000cce4    0000003e     Game.obj (.text:updateDisplay)
+                  0000cd22    00000038     rts430_eabi.lib : rand.obj (.text:rand)
+                  0000cd5a    00000036     receive.obj (.text:InsertEvent)
+                  0000cd90    00000030     SPI.obj (.text:SPISendByte)
+                  0000cdc0    00000030     Game.obj (.text:moveTarget)
+                  0000cdf0    0000002e     SPI.obj (.text:ConfigureSPI)
+                  0000ce1e    0000002c     ADC.obj (.text:ConfigureADC)
+                  0000ce4a    0000002c     rts430_eabi.lib : asr16.obj (.text)
+                  0000ce76    0000002c                     : lsl16.obj (.text)
+                  0000cea2    0000002a     CORDIC.obj (.text:getQuad)
+                  0000cecc    00000026     CORDIC.obj (.text:findTotalAngle)
+                  0000cef2    00000026     rts430_eabi.lib : mult32.obj (.text)
+                  0000cf18    00000026     timerA.obj (.text:timerCaptureFallingInterrupt)
+                  0000cf3e    00000020     TI_IO.obj (.text:TIInitializePins)
+                  0000cf5e    00000020     TI_IO.obj (.text:TIResetPins)
+                  0000cf7e    00000020     timerA.obj (.text:timerCaptureRisingInterrupt)
+                  0000cf9e    0000001a     timerA.obj (.text:Timer1_A3_initial)
+                  0000cfb8    0000001a     calibrate.obj (.text:WaitButtonPress)
+                  0000cfd2    0000001a     rts430_eabi.lib : boot_special.obj (.text:_c_int00_noargs_noexit)
+                  0000cfec    00000018     ADC.obj (.text:GetSamples)
+                  0000d004    00000016     ADC.obj (.text:GetFilteredSample)
+                  0000d01a    00000016     debounce.obj (.text:GetSwitch)
+                  0000d030    00000014     timerA.obj (.text:Timer0_A3_initial)
+                  0000d044    00000014     rts430_eabi.lib : copy_zero_init.obj (.text:decompress:ZI:__TI_zero_init)
+                  0000d058    00000014                     : memset.obj (.text:memset)
+                  0000d06c    00000014                     : mult16.obj (.text)
+                  0000d080    00000012                     : copy_decompress_none.obj (.text:decompress:none:__TI_decompress_none)
+                  0000d092    00000012                     : memcpy.obj (.text:memcpy)
+                  0000d0a4    00000012     Game.obj (.text:randY)
+                  0000d0b6    00000010     timerA.obj (.text:ConfigureTimerA)
+                  0000d0c6    00000010     rts430_eabi.lib : epilog.obj (.text)
+                  0000d0d6    0000000e     main.obj (.text:ConfigureClockModule)
+                  0000d0e4    0000000e     LEDDisplay.obj (.text:UpdateLEDDisplay)
+                  0000d0f2    0000000e     CORDIC.obj (.text:setCoordinates)
+                  0000d100    0000000c     timerA.obj (.text:periodicTimerA0Interrupt)
+                  0000d10c    0000000c     Game.obj (.text:randNum)
+                  0000d118    0000000c     Game.obj (.text:randX)
+                  0000d124    0000000a     Game.obj (.text:initializePoint)
+                  0000d12e    00000006     rts430_eabi.lib : isr_trap.obj (.text:_isr:__TI_ISR_TRAP)
+                  0000d134    00000006                     : copy_decompress_rle.obj (.text:decompress:rle24:__TI_decompress_rle24)
+                  0000d13a    00000004                     : pre_init.obj (.text:_system_pre_init)
+                  0000d13e    00000004                     : exit.obj (.text:abort)
+                  0000d142    00000002                     : _lock.obj (.text:_nop)
 
-.const     0    0000d152    00000027     
-                  0000d152    00000010     CORDIC.obj (.const:COSSCALE)
-                  0000d162    00000010     CORDIC.obj (.const:TANANGLES)
-                  0000d172    00000007     Game.obj (.const:.string:$P$T0$1)
+.const     0    0000d144    00000027     
+                  0000d144    00000010     CORDIC.obj (.const:COSSCALE)
+                  0000d154    00000010     CORDIC.obj (.const:TANANGLES)
+                  0000d164    00000007     Game.obj (.const:.string:$P$T0$1)
 
-.cinit     0    0000d17a    0000001e     
-                  0000d17a    0000000c     (.cinit..data.load) [load image]
-                  0000d186    00000006     (__TI_handler_table)
-                  0000d18c    00000004     (.cinit..bss.load) [load image, compression = zero_init]
-                  0000d190    00000008     (__TI_cinit_table)
+.cinit     0    0000d16c    0000001e     
+                  0000d16c    0000000c     (.cinit..data.load) [load image]
+                  0000d178    00000006     (__TI_handler_table)
+                  0000d17e    00000004     (.cinit..bss.load) [load image, compression = zero_init]
+                  0000d182    00000008     (__TI_cinit_table)
 
 .init_array 
 *          0    0000c000    00000000     UNINITIALIZED
@@ -213,14 +213,14 @@ NMI        0    0000fffc    00000002
 
 LINKER GENERATED COPY TABLES
 
-__TI_cinit_table @ 0000d190 records: 2, size/record: 4, table size: 8
-	.data: load addr=0000d17a, load size=0000000c bytes, run addr=000002a8, run size=00000008 bytes, compression=copy
-	.bss: load addr=0000d18c, load size=00000004 bytes, run addr=00000200, run size=000000a8 bytes, compression=zero_init
+__TI_cinit_table @ 0000d182 records: 2, size/record: 4, table size: 8
+	.data: load addr=0000d16c, load size=0000000c bytes, run addr=000002a8, run size=00000008 bytes, compression=copy
+	.bss: load addr=0000d17e, load size=00000004 bytes, run addr=00000200, run size=000000a8 bytes, compression=zero_init
 
 
 LINKER GENERATED HANDLER TABLE
 
-__TI_handler_table @ 0000d186 records: 3, size/record: 2, table size: 6
+__TI_handler_table @ 0000d178 records: 3, size/record: 2, table size: 6
 	index: 0, handler: __TI_zero_init
 	index: 1, handler: __TI_decompress_rle24
 	index: 2, handler: __TI_decompress_none
@@ -240,7 +240,7 @@ address   name
 00000057  BCSCTL1                     
 00000058  BCSCTL2                     
 00000053  BCSCTL3                     
-0000d14c  C$$EXIT                     
+0000d13e  C$$EXIT                     
 00000059  CACTL1                      
 0000005a  CACTL2                      
 000010fb  CALBC1_12MHZ                
@@ -252,29 +252,29 @@ address   name
 000010fe  CALDCO_1MHZ                 
 000010fc  CALDCO_8MHZ                 
 0000005b  CAPD                        
-0000d152  COSSCALE                    
+0000d144  COSSCALE                    
 0000c372  Calibrate                   
-0000ce2c  ConfigureADC                
-0000d0e4  ConfigureClockModule        
-0000cdfe  ConfigureLEDDisplay         
-0000cdfe  ConfigureSPI                
-0000d0c4  ConfigureTimerA             
+0000ce1e  ConfigureADC                
+0000d0d6  ConfigureClockModule        
+0000cdf0  ConfigureLEDDisplay         
+0000cdf0  ConfigureSPI                
+0000d0b6  ConfigureTimerA             
 00000056  DCOCTL                      
 0000c8e2  Debouncer                   
 0000025c  DisplayPWM                  
 00000128  FCTL1                       
 0000012a  FCTL2                       
 0000012c  FCTL3                       
-0000d012  GetFilteredSample           
-0000cffa  GetSamples                  
-0000d028  GetSwitch                   
+0000d004  GetFilteredSample           
+0000cfec  GetSamples                  
+0000d01a  GetSwitch                   
 00000000  IE1                         
 00000001  IE2                         
 00000002  IFG1                        
 00000003  IFG2                        
 0000c29a  InitializeGlobalVariables   
 0000c9f4  InitializeSwitch            
-0000cd68  InsertEvent                 
+0000cd5a  InsertEvent                 
 00000022  P1DIR                       
 00000025  P1IE                        
 00000024  P1IES                       
@@ -300,7 +300,7 @@ address   name
 0000001b  P3SEL                       
 00000043  P3SEL2                      
 00000230  Receiver_Events             
-0000cd9e  SPISendByte                 
+0000cd90  SPISendByte                 
 00000172  TA0CCR0                     
 00000174  TA0CCR1                     
 00000176  TA0CCR2                     
@@ -319,11 +319,11 @@ address   name
 00000180  TA1CTL                      
 0000011e  TA1IV                       
 00000190  TA1R                        
-0000d162  TANANGLES                   
-0000cf4c  TIInitializePins            
+0000d154  TANANGLES                   
+0000cf3e  TIInitializePins            
 0000c734  TIReceiveByte               
 0000c694  TIReceivePacket             
-0000cf6c  TIResetPins                 
+0000cf5e  TIResetPins                 
 0000c5e0  TISendByte                  
 0000c000  TISendListGetCalc           
 0000c96c  TISendPacket                
@@ -332,8 +332,8 @@ address   name
 000010c0  TLV_CHECKSUM                
 000010f7  TLV_DCO_30_LEN              
 000010f6  TLV_DCO_30_TAG              
-0000d03e  Timer0_A3_initial           
-0000cfac  Timer1_A3_initial           
+0000d030  Timer0_A3_initial           
+0000cf9e  Timer1_A3_initial           
 0000005d  UCA0ABCTL                   
 00000062  UCA0BR0                     
 00000063  UCA0BR1                     
@@ -356,20 +356,20 @@ address   name
 0000006d  UCB0STAT                    
 0000006f  UCB0TXBUF                   
 0000c446  UnsignedCharToTIReal        
-0000d0f2  UpdateLEDDisplay            
+0000d0e4  UpdateLEDDisplay            
 00000120  WDTCTL                      
-0000cfc6  WaitButtonPress             
+0000cfb8  WaitButtonPress             
 00000400  __STACK_END                 
 00000050  __STACK_SIZE                
-0000d190  __TI_CINIT_Base             
-0000d198  __TI_CINIT_Limit            
-0000d186  __TI_Handler_Table_Base     
-0000d18c  __TI_Handler_Table_Limit    
+0000d182  __TI_CINIT_Base             
+0000d18a  __TI_CINIT_Limit            
+0000d178  __TI_Handler_Table_Base     
+0000d17e  __TI_Handler_Table_Limit    
 UNDEFED   __TI_INITARRAY_Base         
 UNDEFED   __TI_INITARRAY_Limit        
-0000d13c  __TI_ISR_TRAP               
-0000d08e  __TI_decompress_none        
-0000d142  __TI_decompress_rle24       
+0000d12e  __TI_ISR_TRAP               
+0000d080  __TI_decompress_none        
+0000d134  __TI_decompress_rle24       
 0000ffe0  __TI_int00                  
 0000ffe4  __TI_int02                  
 0000ffe6  __TI_int03                  
@@ -383,52 +383,52 @@ UNDEFED   __TI_INITARRAY_Limit
 0000fff8  __TI_int12                  
 0000fffa  __TI_int13                  
 0000fffc  __TI_int14                  
-0000d052  __TI_zero_init              
+0000d044  __TI_zero_init              
 ffffffff  __binit__                   
 ffffffff  __c_args__                  
-0000d0e0  __mspabi_func_epilog_1      
-0000d0de  __mspabi_func_epilog_2      
-0000d0dc  __mspabi_func_epilog_3      
-0000d0da  __mspabi_func_epilog_4      
-0000d0d8  __mspabi_func_epilog_5      
-0000d0d6  __mspabi_func_epilog_6      
-0000d0d4  __mspabi_func_epilog_7      
-0000d07a  __mspabi_mpyi               
-0000d07a  __mspabi_mpyi_sw            
-0000cf00  __mspabi_mpyl               
-0000cf00  __mspabi_mpyl_sw            
-0000ce84  __mspabi_slli               
-0000ceac  __mspabi_slli_1             
-0000ce9a  __mspabi_slli_10            
-0000ce98  __mspabi_slli_11            
-0000ce96  __mspabi_slli_12            
-0000ce94  __mspabi_slli_13            
-0000ce92  __mspabi_slli_14            
-0000ce90  __mspabi_slli_15            
-0000ceaa  __mspabi_slli_2             
-0000cea8  __mspabi_slli_3             
-0000cea6  __mspabi_slli_4             
-0000cea4  __mspabi_slli_5             
-0000cea2  __mspabi_slli_6             
-0000cea0  __mspabi_slli_7             
-0000ce9e  __mspabi_slli_8             
-0000ce9c  __mspabi_slli_9             
-0000ce58  __mspabi_srai               
-0000ce80  __mspabi_srai_1             
-0000ce6e  __mspabi_srai_10            
-0000ce6c  __mspabi_srai_11            
-0000ce6a  __mspabi_srai_12            
-0000ce68  __mspabi_srai_13            
-0000ce66  __mspabi_srai_14            
-0000ce64  __mspabi_srai_15            
-0000ce7e  __mspabi_srai_2             
-0000ce7c  __mspabi_srai_3             
-0000ce7a  __mspabi_srai_4             
-0000ce78  __mspabi_srai_5             
-0000ce76  __mspabi_srai_6             
-0000ce74  __mspabi_srai_7             
-0000ce72  __mspabi_srai_8             
-0000ce70  __mspabi_srai_9             
+0000d0d2  __mspabi_func_epilog_1      
+0000d0d0  __mspabi_func_epilog_2      
+0000d0ce  __mspabi_func_epilog_3      
+0000d0cc  __mspabi_func_epilog_4      
+0000d0ca  __mspabi_func_epilog_5      
+0000d0c8  __mspabi_func_epilog_6      
+0000d0c6  __mspabi_func_epilog_7      
+0000d06c  __mspabi_mpyi               
+0000d06c  __mspabi_mpyi_sw            
+0000cef2  __mspabi_mpyl               
+0000cef2  __mspabi_mpyl_sw            
+0000ce76  __mspabi_slli               
+0000ce9e  __mspabi_slli_1             
+0000ce8c  __mspabi_slli_10            
+0000ce8a  __mspabi_slli_11            
+0000ce88  __mspabi_slli_12            
+0000ce86  __mspabi_slli_13            
+0000ce84  __mspabi_slli_14            
+0000ce82  __mspabi_slli_15            
+0000ce9c  __mspabi_slli_2             
+0000ce9a  __mspabi_slli_3             
+0000ce98  __mspabi_slli_4             
+0000ce96  __mspabi_slli_5             
+0000ce94  __mspabi_slli_6             
+0000ce92  __mspabi_slli_7             
+0000ce90  __mspabi_slli_8             
+0000ce8e  __mspabi_slli_9             
+0000ce4a  __mspabi_srai               
+0000ce72  __mspabi_srai_1             
+0000ce60  __mspabi_srai_10            
+0000ce5e  __mspabi_srai_11            
+0000ce5c  __mspabi_srai_12            
+0000ce5a  __mspabi_srai_13            
+0000ce58  __mspabi_srai_14            
+0000ce56  __mspabi_srai_15            
+0000ce70  __mspabi_srai_2             
+0000ce6e  __mspabi_srai_3             
+0000ce6c  __mspabi_srai_4             
+0000ce6a  __mspabi_srai_5             
+0000ce68  __mspabi_srai_6             
+0000ce66  __mspabi_srai_7             
+0000ce64  __mspabi_srai_8             
+0000ce62  __mspabi_srai_9             
 0000cbc8  __mspabi_srli               
 0000cc0e  __mspabi_srli_1             
 0000cbea  __mspabi_srli_10            
@@ -446,14 +446,14 @@ ffffffff  __c_args__
 0000cbf2  __mspabi_srli_8             
 0000cbee  __mspabi_srli_9             
 0000cb24  _auto_init                  
-0000cfe0  _c_int00_noargs_noexit      
+0000cfd2  _c_int00_noargs_noexit      
 000002ac  _lock                       
-0000d150  _nop                        
+0000d142  _nop                        
 0000fffe  _reset_vector               
 000003b0  _stack                      
-0000d148  _system_pre_init            
+0000d13a  _system_pre_init            
 000002ae  _unlock                     
-0000d14c  abort                       
+0000d13e  abort                       
 00000296  angles                      
 0000026c  average                     
 ffffffff  binit                       
@@ -464,35 +464,35 @@ ffffffff  binit
 00000200  circularBuffer              
 0000c7c6  filter                      
 0000c854  findQuadrantAngle           
-0000ceda  findTotalAngle              
+0000cecc  findTotalAngle              
 000002a2  g250usTimer                 
 00000246  gPushButton                 
 000002a6  gameData                    
 0000c192  getDisplaySetting           
-0000ceb0  getQuad                     
+0000cea2  getQuad                     
 0000cb7c  getTiltMultiplier           
-0000cca8  initializeGame              
-0000d132  initializePoint             
+0000cc5c  initializeGame              
+0000d124  initializePoint             
 0000cac2  main                        
-0000d0a0  memcpy                      
-0000d066  memset                      
-0000cdce  moveTarget                  
-0000ccee  moveUs                      
-0000d10e  periodicTimerA0Interrupt    
-0000cd30  rand                        
-0000d11a  randNum                     
-0000d126  randX                       
-0000d0b2  randY                       
+0000d092  memcpy                      
+0000d058  memset                      
+0000cdc0  moveTarget                  
+0000cca2  moveUs                      
+0000d100  periodicTimerA0Interrupt    
+0000cd22  rand                        
+0000d10c  randNum                     
+0000d118  randX                       
+0000d0a4  randY                       
 00000284  runningSum                  
 0000028a  sample                      
 000002a7  scoreTimer                  
-0000d100  setCoordinates              
+0000d0f2  setCoordinates              
 000002a4  target                      
-0000cc60  targetCheck                 
+0000cc14  targetCheck                 
 0000029a  them                        
-0000cf26  timerCaptureFallingInterrupt
-0000cf8c  timerCaptureRisingInterrupt 
-0000cc14  updateDisplay               
+0000cf18  timerCaptureFallingInterrupt
+0000cf7e  timerCaptureRisingInterrupt 
+0000cce4  updateDisplay               
 0000c516  updateLocationOnTilt        
 0000029d  us                          
 00000290  xyzCoordinates              
@@ -657,98 +657,98 @@ address   name
 0000cc06  __mspabi_srli_3             
 0000cc0a  __mspabi_srli_2             
 0000cc0e  __mspabi_srli_1             
-0000cc14  updateDisplay               
-0000cc60  targetCheck                 
-0000cca8  initializeGame              
-0000ccee  moveUs                      
-0000cd30  rand                        
-0000cd68  InsertEvent                 
-0000cd9e  SPISendByte                 
-0000cdce  moveTarget                  
-0000cdfe  ConfigureLEDDisplay         
-0000cdfe  ConfigureSPI                
-0000ce2c  ConfigureADC                
-0000ce58  __mspabi_srai               
-0000ce64  __mspabi_srai_15            
-0000ce66  __mspabi_srai_14            
-0000ce68  __mspabi_srai_13            
-0000ce6a  __mspabi_srai_12            
-0000ce6c  __mspabi_srai_11            
-0000ce6e  __mspabi_srai_10            
-0000ce70  __mspabi_srai_9             
-0000ce72  __mspabi_srai_8             
-0000ce74  __mspabi_srai_7             
-0000ce76  __mspabi_srai_6             
-0000ce78  __mspabi_srai_5             
-0000ce7a  __mspabi_srai_4             
-0000ce7c  __mspabi_srai_3             
-0000ce7e  __mspabi_srai_2             
-0000ce80  __mspabi_srai_1             
-0000ce84  __mspabi_slli               
-0000ce90  __mspabi_slli_15            
-0000ce92  __mspabi_slli_14            
-0000ce94  __mspabi_slli_13            
-0000ce96  __mspabi_slli_12            
-0000ce98  __mspabi_slli_11            
-0000ce9a  __mspabi_slli_10            
-0000ce9c  __mspabi_slli_9             
-0000ce9e  __mspabi_slli_8             
-0000cea0  __mspabi_slli_7             
-0000cea2  __mspabi_slli_6             
-0000cea4  __mspabi_slli_5             
-0000cea6  __mspabi_slli_4             
-0000cea8  __mspabi_slli_3             
-0000ceaa  __mspabi_slli_2             
-0000ceac  __mspabi_slli_1             
-0000ceb0  getQuad                     
-0000ceda  findTotalAngle              
-0000cf00  __mspabi_mpyl               
-0000cf00  __mspabi_mpyl_sw            
-0000cf26  timerCaptureFallingInterrupt
-0000cf4c  TIInitializePins            
-0000cf6c  TIResetPins                 
-0000cf8c  timerCaptureRisingInterrupt 
-0000cfac  Timer1_A3_initial           
-0000cfc6  WaitButtonPress             
-0000cfe0  _c_int00_noargs_noexit      
-0000cffa  GetSamples                  
-0000d012  GetFilteredSample           
-0000d028  GetSwitch                   
-0000d03e  Timer0_A3_initial           
-0000d052  __TI_zero_init              
-0000d066  memset                      
-0000d07a  __mspabi_mpyi               
-0000d07a  __mspabi_mpyi_sw            
-0000d08e  __TI_decompress_none        
-0000d0a0  memcpy                      
-0000d0b2  randY                       
-0000d0c4  ConfigureTimerA             
-0000d0d4  __mspabi_func_epilog_7      
-0000d0d6  __mspabi_func_epilog_6      
-0000d0d8  __mspabi_func_epilog_5      
-0000d0da  __mspabi_func_epilog_4      
-0000d0dc  __mspabi_func_epilog_3      
-0000d0de  __mspabi_func_epilog_2      
-0000d0e0  __mspabi_func_epilog_1      
-0000d0e4  ConfigureClockModule        
-0000d0f2  UpdateLEDDisplay            
-0000d100  setCoordinates              
-0000d10e  periodicTimerA0Interrupt    
-0000d11a  randNum                     
-0000d126  randX                       
-0000d132  initializePoint             
-0000d13c  __TI_ISR_TRAP               
-0000d142  __TI_decompress_rle24       
-0000d148  _system_pre_init            
-0000d14c  C$$EXIT                     
-0000d14c  abort                       
-0000d150  _nop                        
-0000d152  COSSCALE                    
-0000d162  TANANGLES                   
-0000d186  __TI_Handler_Table_Base     
-0000d18c  __TI_Handler_Table_Limit    
-0000d190  __TI_CINIT_Base             
-0000d198  __TI_CINIT_Limit            
+0000cc14  targetCheck                 
+0000cc5c  initializeGame              
+0000cca2  moveUs                      
+0000cce4  updateDisplay               
+0000cd22  rand                        
+0000cd5a  InsertEvent                 
+0000cd90  SPISendByte                 
+0000cdc0  moveTarget                  
+0000cdf0  ConfigureLEDDisplay         
+0000cdf0  ConfigureSPI                
+0000ce1e  ConfigureADC                
+0000ce4a  __mspabi_srai               
+0000ce56  __mspabi_srai_15            
+0000ce58  __mspabi_srai_14            
+0000ce5a  __mspabi_srai_13            
+0000ce5c  __mspabi_srai_12            
+0000ce5e  __mspabi_srai_11            
+0000ce60  __mspabi_srai_10            
+0000ce62  __mspabi_srai_9             
+0000ce64  __mspabi_srai_8             
+0000ce66  __mspabi_srai_7             
+0000ce68  __mspabi_srai_6             
+0000ce6a  __mspabi_srai_5             
+0000ce6c  __mspabi_srai_4             
+0000ce6e  __mspabi_srai_3             
+0000ce70  __mspabi_srai_2             
+0000ce72  __mspabi_srai_1             
+0000ce76  __mspabi_slli               
+0000ce82  __mspabi_slli_15            
+0000ce84  __mspabi_slli_14            
+0000ce86  __mspabi_slli_13            
+0000ce88  __mspabi_slli_12            
+0000ce8a  __mspabi_slli_11            
+0000ce8c  __mspabi_slli_10            
+0000ce8e  __mspabi_slli_9             
+0000ce90  __mspabi_slli_8             
+0000ce92  __mspabi_slli_7             
+0000ce94  __mspabi_slli_6             
+0000ce96  __mspabi_slli_5             
+0000ce98  __mspabi_slli_4             
+0000ce9a  __mspabi_slli_3             
+0000ce9c  __mspabi_slli_2             
+0000ce9e  __mspabi_slli_1             
+0000cea2  getQuad                     
+0000cecc  findTotalAngle              
+0000cef2  __mspabi_mpyl               
+0000cef2  __mspabi_mpyl_sw            
+0000cf18  timerCaptureFallingInterrupt
+0000cf3e  TIInitializePins            
+0000cf5e  TIResetPins                 
+0000cf7e  timerCaptureRisingInterrupt 
+0000cf9e  Timer1_A3_initial           
+0000cfb8  WaitButtonPress             
+0000cfd2  _c_int00_noargs_noexit      
+0000cfec  GetSamples                  
+0000d004  GetFilteredSample           
+0000d01a  GetSwitch                   
+0000d030  Timer0_A3_initial           
+0000d044  __TI_zero_init              
+0000d058  memset                      
+0000d06c  __mspabi_mpyi               
+0000d06c  __mspabi_mpyi_sw            
+0000d080  __TI_decompress_none        
+0000d092  memcpy                      
+0000d0a4  randY                       
+0000d0b6  ConfigureTimerA             
+0000d0c6  __mspabi_func_epilog_7      
+0000d0c8  __mspabi_func_epilog_6      
+0000d0ca  __mspabi_func_epilog_5      
+0000d0cc  __mspabi_func_epilog_4      
+0000d0ce  __mspabi_func_epilog_3      
+0000d0d0  __mspabi_func_epilog_2      
+0000d0d2  __mspabi_func_epilog_1      
+0000d0d6  ConfigureClockModule        
+0000d0e4  UpdateLEDDisplay            
+0000d0f2  setCoordinates              
+0000d100  periodicTimerA0Interrupt    
+0000d10c  randNum                     
+0000d118  randX                       
+0000d124  initializePoint             
+0000d12e  __TI_ISR_TRAP               
+0000d134  __TI_decompress_rle24       
+0000d13a  _system_pre_init            
+0000d13e  C$$EXIT                     
+0000d13e  abort                       
+0000d142  _nop                        
+0000d144  COSSCALE                    
+0000d154  TANANGLES                   
+0000d178  __TI_Handler_Table_Base     
+0000d17e  __TI_Handler_Table_Limit    
+0000d182  __TI_CINIT_Base             
+0000d18a  __TI_CINIT_Limit            
 0000ffe0  __TI_int00                  
 0000ffe4  __TI_int02                  
 0000ffe6  __TI_int03                  
