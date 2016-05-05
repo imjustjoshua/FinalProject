@@ -25,6 +25,7 @@ void initializeGame(void) {
 	initializePoint(&(them.location), MINLOCATIONX, MINLOCATIONY);
 	initializePoint(&(target), randX(), randY());
 	gameData = 0b10000000;
+	scoreTimer = 0;
 }
 
 void moveUs(int togotoX, int togotoY) {

@@ -71,6 +71,7 @@ void main(void) {
 		angles = getDisplaySetting(&xyzCoordinates);
 
 		updateLocationOnTilt();
+		targetCheck();
 		updateDisplay();
 
 		// Runs a PWM FSM for the LED display
