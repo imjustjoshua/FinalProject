@@ -1,18 +1,35 @@
-#ifndef PROJECT9_JL4GE_JYG4WX_SPI_H_
-#define PROJECT9_JL4GE_JYG4WX_SPI_H_
+#ifndef SPI_H_
+#define SPI_H_
 
 #include <msp430.h>
 
-#define MOSI_BIT 			BIT7 // Uses port P1OUT for all down.
-#define SCK_BIT				BIT5
-#define XLAT_BIT			BIT0 // Uses port P2OUT
-#define BLANK_BIT			BIT4 // Uses port P1OUT
+#define MOSI_BIT 					BIT2 // Uses port P1OUT \/.
+#define MISO_BIT					BIT1
+#define SCK_BIT						BIT4
+#define DAC_SELECT_BIT				BIT3
+#define CLR_BIT						BIT5
 
-// Sets the corrisponding directions for the input and output.
+#define SPI_BUSY					UCBUSY & UCA0STAT
+#define SPI_SEND_DATA_REGISTER		UCA0TXBUF
+
+// Sets the corrisponding directions for the inputs and outputs.
 #define SET_MOSI_DIR		P1DIR |= MOSI_BIT
+#define SET_MISO_DIR		P1DIR &= ~MISO_BIT
 #define SET_SCK_DIR			P1DIR |= SCK_BIT
-#define SET_XLAT_DIR		P2DIR |= XLAT_BIT
-#define SET_BLANK_DIR		P1DIR |= BLANK_BIT
+#define SET_DAC_SELECT_DIR	P1DIR |= DAC_SELECT_BIT
+#define SET_CLR_BIT_DIR		P1DIR |= CLR_BIT
+
+// Clear pin commands
+#define SET_CLR				P1OUT |= CLR_BIT
+#define RESET_CLR			P1OUT &= ~CLR_BIT
+#define CLR_EN				RESET_CLR
+#define CLR_DISABLE			SET_CLR
+
+// DAC Chip enable commands
+#define SET_DAC_SELECT		P1OUT |= DAC_SELECT_BIT
+#define RESET_DAC_SELECT	P1OUT &= ~DAC_SELECT_BIT
+#define DAC_SEND_ENABLE		RESET_DAC_SELECT
+#define DAC_SEND_DISABLE	SET_DAC_SELECT
 
 // Set output define statements.
 #define SET_MOSI			P1OUT |= MOSI_BIT
@@ -23,16 +40,9 @@
 #define RESET_SCK			P1OUT &= ~SCK_BIT
 #define TOGGLE_SCK			P1OUT ^= SCK_BIT
 
-#define SET_XLAT			P2OUT |= XLAT_BIT
-#define RESET_XLAT			P2OUT &= ~XLAT_BIT
-#define ENABLE_XLAT			SET_XLAT
-#define DISABLE_XLAT		RESET_XLAT
+#define SPISendByte( byte_value ) SPI_SEND_DATA_REGISTER = byte_value; while(SPI_BUSY);
 
-#define SET_BLANK			P1OUT |= BLANK_BIT
-#define RESET_BLANK			P1OUT &= ~BLANK_BIT
-
-// Function Prototypesvoid ConfigureSPI(void);
-void SPISendByte(unsigned char byte_value);
+// Function Prototypes
 void ConfigureSPI(void);
 
-#endif /* PROJECT9_JL4GE_JYG4WX_SPI_H_ */
+#endif /* SPI_H_ */

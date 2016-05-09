@@ -10,12 +10,6 @@ calibrate.obj: C:/ti/ccsv6/tools/compiler/ti-cgt-msp430_4.4.5/include/intrinsics
 calibrate.obj: C:/ti/ccsv6/tools/compiler/ti-cgt-msp430_4.4.5/include/intrinsics_legacy_undefs.h
 calibrate.obj: ../LEDDisplay.h
 calibrate.obj: ../CORDIC.h
-calibrate.obj: ../PWM.h
-calibrate.obj: ../debounce.h
-calibrate.obj: ../timerA.h
-calibrate.obj: ../transmit.h
-calibrate.obj: ../configure.h
-calibrate.obj: ../receive.h
 
 ../calibrate.c: 
 ../calibrate.h: 
@@ -27,9 +21,3 @@ C:/ti/ccsv6/tools/compiler/ti-cgt-msp430_4.4.5/include/intrinsics.h:
 C:/ti/ccsv6/tools/compiler/ti-cgt-msp430_4.4.5/include/intrinsics_legacy_undefs.h: 
 ../LEDDisplay.h: 
 ../CORDIC.h: 
-../PWM.h: 
-../debounce.h: 
-../timerA.h: 
-../transmit.h: 
-../configure.h: 
-../receive.h: 

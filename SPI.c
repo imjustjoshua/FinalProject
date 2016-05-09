@@ -1,39 +1,25 @@
 #include "SPI.h"
 
-// This configures the output pins to
-//    communicate with the LED display chip
-void ConfigureSPI(void) {
+void ConfigureSPI(void){
 
-	// Setting up the pins.
+	UCA0CTL1 |= UCSWRST;
+
+	// Initializing registers
+	UCA0CTL0 = UCCKPH | UCMSB | UCMST | UCSYNC;
+	UCA0BR1 = 0; // Divides clock by 1
+	UCA0BR0 = 1;
+	UCA0CTL1 |= UCSSEL_2; // Selects SMCLK as the source
+
+	// Configures SPI Port Pins
 	SET_MOSI_DIR;
+	SET_MISO_DIR;
 	SET_SCK_DIR;
-	SET_XLAT_DIR;
-	SET_BLANK_DIR;
+	SET_DAC_SELECT_DIR;
+	SET_CLR_BIT_DIR;
 
-	// Setting the initial values of the outputs.
-	RESET_MOSI;
-	RESET_SCK;
-	RESET_XLAT;
-	RESET_BLANK;
-}
+	// Gives the USI control of the SCK and MOSI pins
+	P1SEL2 = MOSI_BIT | SCK_BIT;
+	P1SEL = MOSI_BIT | SCK_BIT;
 
-// This function is used to send an
-//    arbitrary byte to the LED display
-void SPISendByte(unsigned char byte_value) {
-
-	int i = 0;
-
-	for (i = 0; i < 8; i++) {
-		if (byte_value & 0x80) {
-			SET_MOSI;
-		} else {
-			RESET_MOSI;
-		}
-
-		byte_value <<= 1;
-
-		SET_SCK;
-		RESET_SCK;
-	}
-
+	UCA0CTL1 &= ~UCSWRST;
 }

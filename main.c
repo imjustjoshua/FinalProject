@@ -2,20 +2,15 @@
 #include "SPI.h"
 #include "filter.h"
 #include "ADC.h"
-#include "LEDDisplay.h"
 #include "CORDIC.h"
 #include "debounce.h"
 #include "timerA.h"
 #include "calibrate.h"
-#include "PWM.h"
 
 #include "TI_IO.h"
 #include "TISendData.h"
 
 #include "Game.h"
-
-#include "receive.h"
-#include "transmit.h"
 
 // Function Prototypes
 void ConfigureClockModule();
@@ -81,9 +76,6 @@ void main(void) {
 		updateLocationOnTilt();
 		targetCheck();
 		updateDisplay();
-
-		// Runs a PWM FSM for the LED display
-		//PWM(&DisplayPWM, &angles);
 	}
 }
 
