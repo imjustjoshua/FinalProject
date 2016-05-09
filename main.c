@@ -28,7 +28,7 @@ volatile unsigned int bufferPointer;
 volatile unsigned int circularBuffer[3][8];
 volatile unsigned int runningSum[3];
 volatile unsigned int average[3];			// x, y, z Different from samples.
-volatile unsigned int sample[3];			// Z, Y, X !!!!!!!!!!!!!!!The ADC Multi channel works this way!!!!!!!!!!!!!!!!!!!!!!
+volatile unsigned int sample[7];			// Z, Y, X !!!!!!!!!!!!!!!The ADC Multi channel works this way!!!!!!!!!!!!!!!!!!!!!!
 volatile unsigned int calibratedMAX[3];		// x, y, z
 volatile unsigned int calibratedMIN[3];		// x, y, z
 volatile unsigned int calibratedZero[3];	// x, y, z

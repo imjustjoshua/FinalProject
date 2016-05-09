@@ -29,9 +29,9 @@
  *   GPIO      :  P1.6
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
-#define TR_BIT				BIT6
-#define TR_PORT				P1OUT
-#define TR_DIR				P1DIR
+#define TR_BIT				BIT3
+#define TR_PORT				P2OUT
+#define TR_DIR				P2DIR
 #define SET_TR_AS_AN_OUTPUT	TR_DIR |= TR_BIT
 #define SET_TR_HIGH			TR_PORT |= TR_BIT
 #define SET_TR_LOW			TR_PORT &= ~TR_BIT

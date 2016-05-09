@@ -11,7 +11,7 @@
  *   P2.1 (Timer1_A3.CCI1A)
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
-#define RX_DATA_BITS				(BIT1+BIT2)
+#define RX_DATA_BITS				(BIT0+BIT1)
 #define RX_DATA_PORT				P2IN
 #define RX_DATA_DIR					P2DIR
 #define SET_RX_DATA_AS_AN_INPUT		RX_DATA_DIR &= ~RX_DATA_BITS

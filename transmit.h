@@ -10,7 +10,7 @@
  *   GPIO      :  P1.5
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
-#define TX_DATA_BIT					BIT5
+#define TX_DATA_BIT					BIT2
 #define TX_DATA_PORT				P2OUT
 #define TX_DATA_DIR					P2DIR
 #define SET_TX_DATA_AS_AN_OUTPUT	TX_DATA_DIR |= TX_DATA_BIT

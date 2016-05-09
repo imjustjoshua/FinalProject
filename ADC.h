@@ -12,9 +12,9 @@
  *   GPIO      :  P1.7
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
-#define ADC10_A0_BIT	BIT0	// Port pin bit location for ADC10 A7
-#define ADC10_A1_BIT	BIT1	// Port pin bit location for ADC10 A7
-#define ADC10_A2_BIT	BIT2	// Port pin bit location for ADC10 A7
+#define ADC10_A0_BIT	BIT4	// Port pin bit location for ADC10 A7
+#define ADC10_A1_BIT	BIT5	// Port pin bit location for ADC10 A7
+#define ADC10_A2_BIT	BIT6	// Port pin bit location for ADC10 A7
 
 // The following statements are used for defining the sample size array.
 #define BUFFER_SIZE 8 // This must be a power of 2

@@ -18,7 +18,7 @@
  * The port pin used for sending zero. (red wire)
  */
 
-#define TIZero_BIT			BIT4
+#define TIZero_BIT			BIT5
 #define TIZero_PORT			P2OUT
 #define TIZero_PORT_IN		P2IN
 #define TIZero_DDR			P2DIR
@@ -39,7 +39,7 @@
  * The port pin used for sending a logic one. (white wire)
  */
 
-#define TIOne_BIT			BIT3
+#define TIOne_BIT			BIT4
 #define TIOne_PORT			P2OUT
 #define TIOne_PORT_IN		P2IN
 #define TIOne_DDR			P2DIR

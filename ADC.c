@@ -2,7 +2,7 @@
 #include "filter.h"
 
 // External variables used
-extern volatile unsigned int sample[3];
+extern volatile unsigned int sample[7];
 
 // A function that configures the ADC to read 3 inputs
 void ConfigureADC(void)
@@ -24,7 +24,7 @@ void ConfigureADC(void)
 	 * ADC10SHT_2 = 16 × ADC10CLKs: 8us
 	 * ADC10ON = turns the ADC10 on
 	 */
-	ADC10CTL1 = (INCH_2 | ADC10DIV_7 | ADC10SSEL_3 | CONSEQ_1);
+	ADC10CTL1 = (INCH_6 | ADC10DIV_7 | ADC10SSEL_3 | CONSEQ_1);
 	ADC10CTL0 = (SREF_1 | MSC | REF2_5V | REFON | ADC10SHT_2 | ADC10ON);
 
 	// Enables analog input pins
