@@ -92,6 +92,7 @@ void targetCheck(void) {
 			moveTarget();
 			scoreTimer = 0;
 			gameData |= BIT5;
+			us.score += SCORE_AMOUNT;
 		}
 	}
 
@@ -102,9 +103,12 @@ void targetCheck(void) {
 //	}
 }
 
-void updateDisplay(void) {
+void updateDisplay(unsigned char inProgress) {
 	unsigned char dataToSend[7] = {us.location.Y, us.location.X, them.location.Y, them.location.X, target.Y, target.X, 1};
 
+	if (!inProgress) {
+		dataToSend[6] = 0;
+	}
 //	while (!READ_TIZero || !READ_TIOne);
 	TISendListGetCalc(dataToSend);
 }

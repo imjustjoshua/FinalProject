@@ -7,7 +7,6 @@ CoordOff
 94->Xmax
 62->Ymax
 
-
 // initial setup
 2->A		// This is the tollarence for the target
 
@@ -151,8 +150,6 @@ L1->L2
 
 End
 
-//ADD POST GAME STUFF HERE
-
 ClrDraw
 
 If L1(1)=1
@@ -160,6 +157,7 @@ Text(10,36,"You Won")
 Else
 Text(10,36,"You Lost")
 
+Pause
 
 ClrDraw		// Renables graphing settings
 AxesOn     

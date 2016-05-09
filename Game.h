@@ -21,6 +21,7 @@
 #define MAXSCORE 	 	10
 #define SCORETIME	 	10
 #define SCORE_AMOUNT	1
+#define SCORE_GOAL		10
 
 typedef struct{
 	unsigned char X;
@@ -65,7 +66,7 @@ unsigned char randY(void);
 void moveTarget(void);
 void targetCheck(void);
 void initializePoint(Point *point, unsigned char X1,unsigned char Y1);
-void updateDisplay(void);
+void updateDisplay(unsigned char inProgress);
 void updateLocationOnTilt(void);
 
 #endif /* GAME_H_ */

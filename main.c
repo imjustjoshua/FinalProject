@@ -77,8 +77,21 @@ void main(void) {
 		updateLocationOnTilt();
 		targetCheck();
 
+		// Communicates with the other MSP and get their location and scored.
 		PTPSendReceive();
-		updateDisplay();
+
+		// Checks for the end game condition
+		if (us.score >= SCORE_GOAL || them.score >= SCORE_GOAL) {
+			// Sends if you won or not.
+			if (us.score > them.score) {
+				us.location.Y = 1;
+			} else {
+				us.location.Y = 0;
+			}
+			updateDisplay(0x0);
+		}
+
+		updateDisplay(0x1);
 	}
 }
 
