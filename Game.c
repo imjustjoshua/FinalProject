@@ -91,6 +91,7 @@ void targetCheck(void) {
 		if (scoreTimer >= SCORETIME) {
 			moveTarget();
 			scoreTimer = 0;
+			gameData |= BIT5;
 		}
 	}
 

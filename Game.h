@@ -20,6 +20,7 @@
 #define MAXTARGETY   	62-TARGETSIZE
 #define MAXSCORE 	 	10
 #define SCORETIME	 	10
+#define SCORE_AMOUNT	1
 
 typedef struct{
 	unsigned char X;

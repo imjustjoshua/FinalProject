@@ -11,6 +11,7 @@
 #include "TISendData.h"
 
 #include "Game.h"
+#include "PTP.h"
 
 // Function Prototypes
 void ConfigureClockModule();
@@ -23,7 +24,7 @@ volatile unsigned int bufferPointer;
 volatile unsigned int circularBuffer[3][8];
 volatile unsigned int runningSum[3];
 volatile unsigned int average[3];			// x, y, z Different from samples.
-volatile unsigned int sample[7];			// Z, Y, X !!!!!!!!!!!!!!!The ADC Multi channel works this way!!!!!!!!!!!!!!!!!!!!!!
+volatile unsigned int sample[8];			// Z, Y, X !!!!!!!!!!!!!!!The ADC Multi channel works this way!!!!!!!!!!!!!!!!!!!!!!
 volatile unsigned int calibratedMAX[3];		// x, y, z
 volatile unsigned int calibratedMIN[3];		// x, y, z
 volatile unsigned int calibratedZero[3];	// x, y, z
@@ -41,6 +42,9 @@ void main(void) {
 	// Initializes the port pins for the TI communication.
 	TIInitializePins();
 
+	// Initializes the port pins used for the P2P communicaition.
+	PTPInitializePins();
+
 	// Configures the ADC
 	ConfigureADC();
 
@@ -56,6 +60,9 @@ void main(void) {
 	// Runs Calibration
 	Calibrate();
 
+	// Detects which sends first
+	PTPDetectMaster();
+
 	// Loop forever
 	while (1) {
 		// Gets new samples and passes them through a circular buffer
@@ -69,6 +76,8 @@ void main(void) {
 
 		updateLocationOnTilt();
 		targetCheck();
+
+		PTPSendReceive();
 		updateDisplay();
 	}
 }
@@ -84,6 +93,7 @@ void InitializeGlobalVariables(void) {
 	bufferPointer = 0;
 	g250usTimer = 0;
 
+	masterSlave = SLAVE;
 	int i;
 	int j;
 

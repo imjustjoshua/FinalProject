@@ -23,8 +23,8 @@ CoordOff
 0->L2(2)
 0->L2(3) 	// Stores the prev x, y coord. of your enemy player
 0->L2(4)
-0->L2(5) 	// Stores the x, y coord. of your target
-0->L2(6)
+9->L2(5) 	// Stores the x, y coord. of your target
+9->L2(6)
 
 // Pre game screen
 
