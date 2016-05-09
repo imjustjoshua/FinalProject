@@ -1,8 +1,8 @@
 #include "calibrate.h"
 #include "ADC.h"
-#include "LEDDisplay.h"
 #include "debounce.h"
 #include "timerA.h"
+#include "TISendData.h"
 
 // Function declarations.
 void WaitButtonPress(void);
@@ -23,10 +23,14 @@ void Calibrate(void) {
 	// Populates the sample buffers
 	GetFilteredSample();
 
+	// List for sending to the TI Calc.
+	unsigned char listData[7] = {1, 0, 0, 0, 9, 9, 0};
+
+
 	/*
 	 * Determine Xmax (+X direction): Turn on North LED, and wait for pushbutton to be pushed then read sample
 	 */
-	UpdateLEDDisplay(LED_N);
+	TISendListGetCalc(listData);
 	WaitButtonPress();
 	GetFilteredSample();
 	GetFilteredSample();
@@ -35,7 +39,8 @@ void Calibrate(void) {
 	/*
 	 * Determine Xmin (-X direction): Turn on South LED, and wait for pushbutton to be pushed then read sample
 	 */
-	UpdateLEDDisplay(LED_S);
+	listData[0] = 2;
+	TISendListGetCalc(listData);
 	WaitButtonPress();
 	GetFilteredSample();
 	GetFilteredSample();
@@ -44,7 +49,8 @@ void Calibrate(void) {
 	/*
 	 * Determine Ymax (+Y direction): Turn on West LED, and wait for pushbutton to be pushed then read sample
 	 */
-	UpdateLEDDisplay(LED_W);
+	listData[0] = 3;
+	TISendListGetCalc(listData);
 	WaitButtonPress();
 	GetFilteredSample();
 	GetFilteredSample();
@@ -53,7 +59,8 @@ void Calibrate(void) {
 	/*
 	 * Determine Ymin (-Y direction): Turn on East LED, and wait for pushbutton to be pushed then read sample
 	 */
-	UpdateLEDDisplay(LED_E);
+	listData[0] = 4;
+	TISendListGetCalc(listData);
 	WaitButtonPress();
 	GetFilteredSample();
 	GetFilteredSample();
@@ -63,7 +70,8 @@ void Calibrate(void) {
 	 * Determine Zmax (+Z direction): Turn on North, South, East, West LEDs, and
 	 * wait for pushbutton to be pushed then read sample
 	 */
-	UpdateLEDDisplay(LED_N | LED_S | LED_E | LED_W);
+	listData[0] = 5;
+	TISendListGetCalc(listData);
 	WaitButtonPress();
 	GetFilteredSample();
 	GetFilteredSample();
@@ -73,16 +81,15 @@ void Calibrate(void) {
 	 * Determine Zmin (-Z direction): Turn on Northeast, Northwest, Southeast,
 	 * Southwest LEDs, and wait for pushbutton to be pushed then read sample
 	 */
-	UpdateLEDDisplay(LED_NW | LED_SW | LED_SE | LED_NE);
+	listData[0] = 6;
+	TISendListGetCalc(listData);
 	WaitButtonPress();
 	GetFilteredSample();
 	GetFilteredSample();
 	calibratedMIN[2] = average[2];
 
-	// Deconfigures the timer so the interrupt stops running and taking up time.
-	//DeConfigureTimerA();
-
-	UpdateLEDDisplay(0x0);
+	listData[0] = 0;
+	TISendListGetCalc(listData);
 
 	int i;
 

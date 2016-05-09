@@ -32,6 +32,62 @@ Text(10,36,"Welcome")
 Text(30,8,"Waiting for connection")
 
 // Wait until MSP is ready
+While L1(1)=0
+GetCalc(L1)
+End
+ClrDraw
+
+Text(10,36,"Callibrate")
+Text(30,8,"Face North")
+// Callibration sequence.
+While L1(1)=1
+GetCalc(L1)
+End
+ClrDraw
+
+Text(10,36,"Callibrate")
+Text(30,8,"Face South")
+// Callibration sequence.
+While L1(1)=2
+GetCalc(L1)
+End
+ClrDraw
+
+Text(10,36,"Callibrate")
+Text(30,8,"Face West")
+// Callibration sequence.
+While L1(1)=3
+GetCalc(L1)
+End
+ClrDraw
+
+Text(10,36,"Callibrate")
+Text(30,8,"Face East")
+// Callibration sequence.
+While L1(1)=4
+GetCalc(L1)
+End
+ClrDraw
+
+Text(10,36,"Callibrate")
+Text(30,8,"Face Up")
+// Callibration sequence.
+While L1(1)=5
+GetCalc(L1)
+End
+ClrDraw
+
+Text(10,36,"Callibrate")
+Text(30,8,"Face Down")
+// Callibration sequence.
+While L1(1)=6
+GetCalc(L1)
+End
+ClrDraw
+
+// Waits until the MSPs have connected.
+Text(10,36,"Waiting")
+Text(30,8,"For Peer...")
 While L1(7)=0
 GetCalc(L1)
 End

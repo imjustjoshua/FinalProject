@@ -30,12 +30,6 @@ volatile unsigned int calibratedZero[3];	// x, y, z
 
 coordinates xyzCoordinates;
 measurements angles;
-PWMData DisplayPWM;
-
-//Global Variables Section
-TransmitterData Xmit1; //This declares an instance of the transmitter data structure.
-ManchesterReceiver Rcv1;
-Event_Queue Receiver_Events; //Receiver Global Variables
 
 void main(void) {
 	WDTCTL = WDTPW | WDTHOLD;		// Stop watchdog timer
@@ -112,14 +106,4 @@ void InitializeGlobalVariables(void) {
 	InitializeSwitch(&gPushButton, (char *) &P1IN, (char *) &P1DIR,
 				(char *) &P1REN, (char *) &P1OUT, (unsigned char) BIT3,
 				LOW_THRESHOLD, HIGH_THRESHOLD, Low);
-
-	DisplayPWM.PWMPeriod = 40;
-	DisplayPWM.PWMState = PWMInitialize;
-	DisplayPWM.NTime0 = 0;
-	DisplayPWM.NTime1 = 0;
-	DisplayPWM.NTime2 = 0;
-	DisplayPWM.PWMPeriodTime = 0;
-	DisplayPWM.N0 = 0;
-	DisplayPWM.N1 = 0;
-	DisplayPWM.N2 = 0;
 }

@@ -1,6 +1,6 @@
 #include "timerA.h"
 
-extern TransmitterData Xmit1;
+//extern TransmitterData Xmit1;
 extern unsigned int g250usTimer;
 
 void ConfigureTimerA(void)
@@ -9,7 +9,7 @@ void ConfigureTimerA(void)
 	Timer1_A3_initial();
 
 	// Used for Timer1 A capture of rising/falling edges of received data
-	SELECT_TIMER1_A_CCISx;
+//	SELECT_TIMER1_A_CCISx;
 }
 
 // Interrupt Handlers
@@ -17,13 +17,13 @@ void ConfigureTimerA(void)
 __interrupt void periodicTimerA0Interrupt(void)
 {
    /* Capture Compare Register 0 ISR Hook Function Name */
-   if (TRANSMIT_RECEIVE_MODE) {
-	   SET_TR_LOW;
-	   Xmit(&Xmit1);
-   }
-   else {
-	   SET_TR_HIGH;
-   }
+//   if (TRANSMIT_RECEIVE_MODE) {
+//	   SET_TR_LOW;
+//	   Xmit(&Xmit1);
+//   }
+//   else {
+//	   SET_TR_HIGH;
+//   }
    g250usTimer+=2;
    /* No change in operating mode on exit */
 }
@@ -35,8 +35,8 @@ __interrupt void periodicTimerA0Interrupt(void)
 #pragma vector=TIMER1_A0_VECTOR
 __interrupt void timerCaptureRisingInterrupt(void)
 {
-	/* Capture Compare Register 0 ISR Hook Function Name */
-	InsertEvent(Rising, TA1CCR0) ;   //Insert this event into event Queue
+//	/* Capture Compare Register 0 ISR Hook Function Name */
+//	InsertEvent(Rising, TA1CCR0) ;   //Insert this event into event Queue
 
 	/* No change in operating mode on exit */
 }
@@ -51,7 +51,7 @@ __interrupt void timerCaptureFallingInterrupt(void)
     {
         case TA1IV_TACCR1:
             /* Capture Compare Register 1 ISR Hook Function Name */
-        InsertEvent(Falling, TA1CCR1) ; //Insert this event into event Queue.
+//        InsertEvent(Falling, TA1CCR1) ; //Insert this event into event Queue.
             /* No change in operating mode on exit */
             break;
         case TA1IV_TACCR2:

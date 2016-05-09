@@ -3,8 +3,8 @@
 
 #include <msp430.h>
 #include <msp430.h>
-#include "transmit.h"
-#include "receive.h"
+//#include "transmit.h"
+//#include "receive.h"
 
 #define TACCR0_VALUE 499
 

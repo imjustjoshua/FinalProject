@@ -2,7 +2,7 @@
 
 #include "DAC.h"
 #include "SPI.h"
-#include "LED.h"
+//#include "LED.h"
 
 extern DAC* arrayDAC[4];
 
@@ -19,7 +19,7 @@ void ConfigureTimerA(void) {
 #pragma vector = TIMER0_A0_VECTOR
 // Timer a interrupt service routine.
 __interrupt void TimerA0_routine(void) {
-	TURN_ON_LED1;
+	// TURN_ON_LED1;
 
 	int i = 0;
 	for (i = 0; i < 4; i++) {
@@ -58,7 +58,7 @@ __interrupt void TimerA0_routine(void) {
 
 	DAC_SEND_DISABLE;
 
-	TURN_OFF_LED1;
+	// TURN_OFF_LED1;
 }
 
 /*
@@ -77,7 +77,7 @@ __interrupt void TimerA0_routine(void) {
 //#pragma vector = TIMER0_A0_VECTOR
 //// Timer a interrupt service routine.
 //__interrupt void TimerA0_routine(void) {
-//	TURN_ON_LED1;
+//	// TURN_ON_LED1;
 //
 //	arrayData = array100[arrayPosition];
 //
@@ -123,5 +123,5 @@ __interrupt void TimerA0_routine(void) {
 //
 //	if (arrayPosition == 224) arrayPosition = 0;
 //
-//	TURN_OFF_LED1;
+//	// TURN_OFF_LED1;
 //}
