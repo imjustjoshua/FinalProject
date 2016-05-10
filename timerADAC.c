@@ -19,46 +19,7 @@ void ConfigureTimerA(void) {
 #pragma vector = TIMER0_A0_VECTOR
 // Timer a interrupt service routine.
 __interrupt void TimerA0_routine(void) {
-	// TURN_ON_LED1;
-
-	int i = 0;
-	for (i = 0; i < 4; i++) {
-		// Starts the writing process
-		DAC_SEND_ENABLE;
-
-		// Retrieves the address, array index, array data, and array length from the DAC object.
-		int address = arrayDAC[i]->DACAddress;
-		int CurrentArrayIndex = arrayDAC[i]->CurrentArrayIndex;
-		unsigned int data = arrayDAC[i]->ArrayValuesPtr[CurrentArrayIndex] ;
-		int ArrayLength = arrayDAC[i]->ArrayLength;
-
-		// Sends the opcode, address, and data to the DAC
-		SPISendByte(WRITE_DAC | address);
-		SPISendByte(data >> 8);
-		SPISendByte(data);
-
-		// Ends the writing process
-		DAC_SEND_DISABLE;
-
-		// Incraments the array pointer
-		CurrentArrayIndex++;
-		if (CurrentArrayIndex == ArrayLength) {
-			arrayDAC[i]->CurrentArrayIndex = 0;
-		} else {
-			arrayDAC[i]->CurrentArrayIndex = CurrentArrayIndex;
-		}
-	}
-
-	// Updates all of the DACs at once, so that the waves stay in phase.
-	DAC_SEND_ENABLE;
-
-	SPISendByte(UPDATE_DAC | ALL_DACS);
-	SPISendByte(0x0);
-	SPISendByte(0x0);
-
-	DAC_SEND_DISABLE;
-
-	// TURN_OFF_LED1;
+	UpdateDACs();
 }
 
 /*

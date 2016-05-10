@@ -21,7 +21,7 @@
 #define MAXSCORE 	 	10
 #define SCORETIME	 	10
 #define SCORE_AMOUNT	1
-#define SCORE_GOAL		10
+#define SCORE_GOAL		4
 
 typedef struct{
 	unsigned char X;

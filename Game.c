@@ -10,7 +10,7 @@
 #include "TISendData.h"
 #include "TI_IO.h"
 #include "CORDIC.h"
-
+#include "SPI.h"
 extern measurements angles;
 
 void initializePoint(Point *point, unsigned char X1, unsigned char Y1) {
@@ -85,18 +85,20 @@ void targetCheck(void) {
 	int dx = target.X - us.location.X;
 	int dy = target.Y - us.location.Y;
 
-	if ((-TARGETRADIUS <= dx && dx <= TARGETRADIUS) && (-TARGETRADIUS <= dy && dy <= TARGETRADIUS)) {
+	if ((-TARGETRADIUS <= dx && dx <= TARGETRADIUS) &&
+			(-TARGETRADIUS <= dy && dy <= TARGETRADIUS)) {
 		scoreTimer++;
 		gameData |= BIT5;
+		CLR_EN;
 		if (scoreTimer >= SCORETIME) {
 			moveTarget();
 			scoreTimer = 0;
 			gameData |= BIT5;
 			us.score += SCORE_AMOUNT;
 		}
-	}
+	} else CLR_DISABLE;
 
-	// TODO add enemy detection to this.
+	// TODO add enemy detection to this?
 //	if (((us.location.X >= target.X) && (us.location.Y <= target.Y))
 //			&& !(them.location.X >= target.X)
 //			&& (them.location.Y <= target.Y)) {

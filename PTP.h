@@ -38,7 +38,7 @@ unsigned char masterSlave;
  * The port pin used for sending a logic one. (white wire)
  */
 
-#define PTPOne_BIT			BIT1
+#define PTPOne_BIT			BIT2
 #define PTPOne_PORT			P2OUT
 #define PTPOne_PORT_IN		P2IN
 #define PTPOne_DDR			P2DIR

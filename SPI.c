@@ -17,6 +17,7 @@ void ConfigureSPI(void){
 	SET_DAC_SELECT_DIR;
 	SET_CLR_BIT_DIR;
 
+	CLR_DISABLE;
 	// Gives the USI control of the SCK and MOSI pins
 	P1SEL2 = MOSI_BIT | SCK_BIT;
 	P1SEL = MOSI_BIT | SCK_BIT;

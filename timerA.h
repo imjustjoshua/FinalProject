@@ -2,7 +2,7 @@
 #define TIMER_A_H
 
 #include <msp430.h>
-#include <msp430.h>
+//#include <msp430.h>
 //#include "transmit.h"
 //#include "receive.h"
 
@@ -10,11 +10,11 @@
 
 // Prototypes
 void ConfigureTimerA(void);
-void DeConfigureTimerA(void);
-void ConfigureTimerA(void);
-void BCSplus_initial(void);
+//void DeConfigureTimerA(void);
+//void ConfigureTimerA(void);
+//void BCSplus_initial(void);
 void Timer0_A3_initial(void);
-void Timer1_A3_initial(void);
+//void Timer1_A3_initial(void);
 
 
 #endif

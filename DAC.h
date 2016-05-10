@@ -41,5 +41,5 @@ typedef struct {
 
 // Function prototypes
 void ConfigureDAC(void);
-
+void UpdateDACs();
 #endif

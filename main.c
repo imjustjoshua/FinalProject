@@ -13,6 +13,9 @@
 #include "Game.h"
 #include "PTP.h"
 
+#include "timerA1.h"
+#include "UART.h"
+
 // Function Prototypes
 void ConfigureClockModule();
 void InitializeGlobalVariables(void);
@@ -54,14 +57,20 @@ void main(void) {
 	// Initializes global variables
 	InitializeGlobalVariables();
 
-	// Interrupts Globally Enabled
+	// Initiializes Timer A1 (for UART)
+	ConfigureTimerA1();
+
+		// Interrupts Globally Enabled
 	_BIS_SR(GIE);
+
+	//Initializes UART
+	ConfigureUART();
 
 	// Runs Calibration
 	Calibrate();
 
 	// Detects which sends first
-	PTPDetectMaster();
+	//PTPDetectMaster();
 
 	// Loop forever
 	while (1) {
@@ -78,15 +87,22 @@ void main(void) {
 		targetCheck();
 
 		// Communicates with the other MSP and get their location and scored.
-		PTPSendReceive();
+		//PTPSendReceive();
+
+		//Update the scores on the LCD display
+		sendScores(us.score,them.score);
 
 		// Checks for the end game condition
 		if (us.score >= SCORE_GOAL || them.score >= SCORE_GOAL) {
 			// Sends if you won or not.
 			if (us.score > them.score) {
 				us.location.Y = 1;
+				UARTwin();
+				gameData=gameData&0b111111|0b01000000;
 			} else {
 				us.location.Y = 0;
+				UARTlose();
+				gameData=gameData&0b111111;
 			}
 			updateDisplay(0x0);
 		}

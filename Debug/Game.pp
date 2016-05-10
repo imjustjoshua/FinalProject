@@ -12,6 +12,7 @@ Game.obj: C:/ti/ccsv6/tools/compiler/ti-cgt-msp430_4.4.5/include/intrinsics_lega
 Game.obj: ../TISendData.h
 Game.obj: ../TI_IO.h
 Game.obj: ../CORDIC.h
+Game.obj: ../SPI.h
 
 ../Game.c: 
 ../Game.h: 
@@ -25,3 +26,4 @@ C:/ti/ccsv6/tools/compiler/ti-cgt-msp430_4.4.5/include/intrinsics_legacy_undefs.
 ../TISendData.h: 
 ../TI_IO.h: 
 ../CORDIC.h: 
+../SPI.h: 

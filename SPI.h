@@ -7,7 +7,7 @@
 #define MISO_BIT					BIT1
 #define SCK_BIT						BIT4
 #define DAC_SELECT_BIT				BIT3
-#define CLR_BIT						BIT5
+#define CLR_BIT						BIT3
 
 #define SPI_BUSY					UCBUSY & UCA0STAT
 #define SPI_SEND_DATA_REGISTER		UCA0TXBUF
@@ -20,8 +20,8 @@
 #define SET_CLR_BIT_DIR		P1DIR |= CLR_BIT
 
 // Clear pin commands
-#define SET_CLR				P1OUT |= CLR_BIT
-#define RESET_CLR			P1OUT &= ~CLR_BIT
+#define SET_CLR				P2OUT |= CLR_BIT
+#define RESET_CLR			P2OUT &= ~CLR_BIT
 #define CLR_EN				RESET_CLR
 #define CLR_DISABLE			SET_CLR
 
